@@ -164,7 +164,6 @@
                                                         @php
                                                             $i_s = 1;
                                                         @endphp
-                                                        @endphp
                                                         @foreach ($product->getSize as $size)
                                                             <tr>
                                                                 <td><input type="text" value="{{ $size->name }}"

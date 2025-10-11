@@ -43,6 +43,7 @@
                                             <th>Code</th>
                                             <th>Người tạo màu sắc</th>
                                             <th>Status</th>
+                                            <th>Ngày tạo</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -53,7 +54,7 @@
                                                 <td>{{ $value->name }}</td>
                                                 <td>{{ $value->code }}</td>
                                                 <td>{{ $value->created_by_name }}</td>
-                                                <td>{{ $value->status == 0 ? 'Hoạt động' : 'Không hoạt động' }}</td>
+                                                <td>{{ ($value->status == 0) ? 'Hoạt động' : 'Không hoạt động' }}</td>
                                                 <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
                                                 <td>
                                                     <a href="{{ url('admin/color/edit/' . $value->id) }}"

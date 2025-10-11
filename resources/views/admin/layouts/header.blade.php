@@ -119,7 +119,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-            <img src="{{ asset('assets/dist/img/user2.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ asset('assets/dist/img/user2.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="0" class="d-block">{{ Auth::user()->name }}</a>
@@ -162,10 +162,10 @@
                     </a>
                 </li>
 
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a href="{{ url('admin/subcategory/list') }}"
                         class="nav-link @if (Request::segment(2) == 'subcategory') active @endif">
-                      <i class="nav-icon fas fa-list-alt"></i>
+                        <i class="nav-icon fas fa-list-alt"></i>
 
                         <p>
                             Danh mục con
@@ -183,7 +183,7 @@
                     </a>
                 </li>
 
-                  <li class="nav-item">
+                <li class="nav-item">
                     <a href="{{ url('admin/color/list') }}"
                         class="nav-link @if (Request::segment(2) == 'color') active @endif">
                         <i class="nav-icon fas fa-list-alt"></i>
@@ -196,11 +196,23 @@
                 <li class="nav-item">
                     <a href="{{ url('admin/product/list') }}"
                         class="nav-link @if (Request::segment(2) == 'product') active @endif">
-                      <i class="nav-icon fab fa-product-hunt"></i>
+                        <i class="nav-icon fab fa-product-hunt"></i>
 
-                        
+
                         <p>
                             Sản phẩm
+                        </p>
+                    </a>
+                </li>
+
+                          <li class="nav-item">
+                    <a href="{{ url('admin/discount_code/list') }}"
+                        class="nav-link @if (Request::segment(2) == 'discount_code') active @endif">
+                        <i class="nav-icon fab fa-product-hunt"></i>
+
+
+                        <p>
+                            Discount Code
                         </p>
                     </a>
                 </li>

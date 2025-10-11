@@ -9,10 +9,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Category List</h1>
+                        <h1>Discount Code List</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right";>
-                        <a href="{{ url('admin/category/add/') }}" class="btn btn-primary"> Thêm danh mục </a>
+                        <a href="{{ url('admin/discount_code/add/') }}" class="btn btn-primary"> Thêm mã giảm giá </a>
                     </div>
 
                 </div>
@@ -31,7 +31,7 @@
                         @include('admin.layouts._message')
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Category List</h3>
+                                <h3 class="card-title">Color List</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
@@ -39,15 +39,12 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Tên</th></th>
-                                            <th>Slug</th>
-                                            <th>Meta title</th>
-                                            <th>Meta Description</th>
-                                            <th>Meta KeyWords</th>
-                                            <th>Create by name</th>
-                                            <th>Trạng thái</th>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Percent or Amount</th>
+                                            <th>Status</th>
                                             <th>Ngày tạo</th>
-                                            <th>Hành động</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -55,24 +52,27 @@
                                             <tr>
                                                 <td>{{ $value->id }}</td>
                                                 <td>{{ $value->name }}</td>
-                                                <td>{{ $value->slug }}</td>
-                                                <td>{{ $value->meta_title }}</td>
-                                                <td>{{ $value->meta_description }}</td>
-                                                <td>{{ $value->meta_keyword }}</td>
-                                                <td>{{ $value->created_by_name }}</td>
-                                                <td>{{ $value->status == 0 ? 'Hoạt động' : 'Không hoạt động' }}</td>
+                                                <td>{{ $value->type }}</td>
+                                                <td>{{ $value->percent_amount }}</td>
+                                                <td>{{ date('d-m-Y', strtotime($value->expire_date)) }}</td>
+                                                <td>{{ ($value->status == 0) ? 'Hoạt động' : 'Không hoạt động' }}</td>
                                                 <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
                                                 <td>
-                                                    <a href="{{ url('admin/category/edit/' . $value->id) }}"
+                                                    <a href="{{ url('admin/discount_code/edit/' . $value->id) }}"
                                                         class="btn btn-primary">Edit</a>
-                                                    <a href="{{ url('admin/category/delete/' . $value->id) }}"
-                                                        onclick="return confirm('Xóa danh mục này?')"
+                                                    <a href="{{ url('admin/discount_code/delete/' . $value->id) }}"
+                                                        onclick="return confirm('Xóa màu này?')"
                                                         class="btn btn-danger">Xóa</a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="card-footer clearfix">
+                                    <div class="float-right">
+                                        {{ $getRecord->links() }}
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-body -->
                         </div>

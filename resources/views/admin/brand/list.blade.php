@@ -46,6 +46,7 @@
                                             <th>Meta KeyWords</th>
                                             <th>Create by name</th>
                                             <th>Status</th>
+                                            <th>Ngày tạo</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>

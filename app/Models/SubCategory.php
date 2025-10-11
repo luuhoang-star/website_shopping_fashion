@@ -44,4 +44,13 @@ class SubCategory extends Model
         ->get(); // thực hiện truy vấn và trả kết quả
 }
 
+public function TotalProduct()
+{
+    return $this->hasMany(Product::class, 'sub_category_id')
+                ->where('is_delete', 0)
+                ->where('status', 0)
+                ->count();
+}
+
+
 }

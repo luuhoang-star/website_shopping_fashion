@@ -128,7 +128,8 @@
                                                             <input type="text" id="getDiscountCode" class="form-control"
                                                                 placeholder="Discount Code">
                                                             <div class="input-group-append">
-                                                                <button id="ApplyDiscount" style="height: 38px;"type="button"
+                                                                <button id="ApplyDiscount"
+                                                                    style="height: 38px;"type="button"
                                                                     class="btn btn-outline-primary-2" type="submit"><i
                                                                         class="icon-long-arrow-right"></i></button>
                                                             </div><!-- .End .input-group-append -->
@@ -140,16 +141,46 @@
                                                 <td>Discount:</td>
                                                 <td>$<span id="getDiscountAmount">0.00</span></td>
                                             </tr><!-- End .summary-subtotal -->
-                                            <tr>
+
+                                            <tr class="summary-shipping">
                                                 <td>Shipping:</td>
-                                                <td>Free shipping</td>
+                                                <td>&nbsp;</td>
                                             </tr>
+
+                                            @foreach ($getShipping as $shipping)
+                                                <tr class="summary-shipping-row">
+                                                    <td>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" id="free-shipping{{ $shipping->id }}"
+                                                                name="shipping"
+                                                                data-price="{{ !empty($shipping->price) ? $shipping->price : 0 }}"
+                                                                class="custom-control-input getShippingCharge">
+                                                            <label class="custom-control-label"
+                                                                for="free-shipping{{ $shipping->id }}">{{ $shipping->name }}</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        @if (!empty($shipping->price))
+                                                            ${{ number_format((float) $shipping->price, 2) }}
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+
+
                                             <tr class="summary-total">
+
                                                 <td>Total:</td>
-                                                <td>$<span id="getPayableTotal">${{ number_format(Cart::getSubTotal(), 2) }}</span></td>
+                                                <td>$<span
+                                                        id="getPayableTotal">${{ number_format(Cart::getSubTotal(), 2) }}</span>
+                                                </td>
+
                                             </tr><!-- End .summary-total -->
                                         </tbody>
                                     </table><!-- End .table table-summary -->
+                                    <input type="hidden" id="getShippingChargeTotal" value="0">
+                                    <input type="hidden" id="PayableTotal" value="{{ Cart::getSubTotal() }}">
 
                                     <div class="accordion-summary" id="accordion-payment">
 
@@ -232,30 +263,41 @@
     </main><!-- End .main -->
 @endsection
 @section('script')
-<script type="text/javascript">
-
-    $('body').delegate('#ApplyDiscount', 'click', function() {
-        var discount_code = $('#getDiscountCode').val();
-
-        $.ajax({
-            type : "POST",
-            url : "{{ url('checkout/apply_discount_code') }}",
-            data : {
-                discount_code : discount_code,
-                "_token" : "{{  csrf_token() }}",
-            },
-            dataType : "json",
-            "success": function(data) {
-                $('#getDiscountAmount').html(data.discount_amount) // số tiền giảm giá
-                $('#getPayableTotal').html(data.payable_total) // tổng số tiền sau khi đã giảm giá
-                if(data.status == true) {
-                    alert(data.message);
-                }
-            },
-            error: function (data) {
-
-            }
+    <script type="text/javascript">
+        $('body').delegate('.getShippingCharge', 'click', function() {
+            var price = $(this).attr('data-price');
+            var total = $('#PayableTotal').val();
+            $('#getShippingChargeTotal').val(price);
+            var final_total = parseFloat(price) + parseFloat(total);
+            $('#getPayableTotal').html(final_total.toFixed(2));
         });
-    });
-</script>
+
+
+        $('body').delegate('#ApplyDiscount', 'click', function() {
+            var discount_code = $('#getDiscountCode').val();
+
+            $.ajax({
+                type: "POST",
+                url: "{{ url('checkout/apply_discount_code') }}",
+                data: {
+                    discount_code: discount_code,
+                    "_token": "{{ csrf_token() }}",
+                },
+                dataType: "json",
+                "success": function(data) {
+                    $('#getDiscountAmount').html(data.discount_amount) // số tiền giảm giá
+                  var shipping = $('#getShippingChargeTotal').val();
+                  var final_total = parseFloat(shipping) + parseFloat(data.payable_total);
+                    $('#getPayableTotal').html(final_total.toFixed(2));
+                    $('#PayableTotal').val(data.payable_total);
+                    if (data.status == true) {
+                        alert(data.message);
+                    }
+                },
+                error: function(data) {
+
+                }
+            });
+        });
+    </script>
 @endsection

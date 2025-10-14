@@ -30,9 +30,14 @@
                              <li><a href="tel:#"><i class="icon-phone"></i>Call: 0973.797.151</a></li>
                              <li><a href="wishlist.html"><i class="icon-heart-o"></i>My Wishlist <span>(3)</span></a>
                              </li>
-                             <li><a href="about.html">About Us</a></li>
-                             <li><a href="contact.html">Contact Us</a></li>
+                             <li><a href="{{ url('about') }}">About Us</a></li>
+                             <li><a href="{{ url('contact') }}">Contact Us</a></li>
+                             @if(!empty(Auth::check()))
+                             <li><a href="{{ url('admin/logout') }}"><i class="icon-user"></i>Logout</a></li>
+                           @else
                              <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a></li>
+                            
+                             @endif
                          </ul>
                      </li>
                  </ul>

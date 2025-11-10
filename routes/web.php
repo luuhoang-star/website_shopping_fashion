@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController as ProductFront;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Admin\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +31,12 @@ Route::get('/', function () {
 
 Route::post('auth_register', [AuthController::class, 'auth_register']);
 Route::post('auth_login', [AuthController::class, 'auth_login']);
+Route::get('forgot-password', [AuthController::class, 'forgot_password']);
+Route::post('forgot-password', [AuthController::class, 'auth_forgot_password']);
 Route::get('activate/{id}', [AuthController::class, 'activate_email']);
+Route::get('reset/{token}', [AuthController::class, 'reset']);
+Route::post('reset/{token}', [AuthController::class, 'auth_reset']);
+
 
 #Xác thực tài khoản rồi cho đăng nhập
 Route::get('admin', [AuthController::class, 'login_admin']);
@@ -47,6 +53,10 @@ Route::group(['middleware' => 'admin'], function () {
   Route::get('admin/admin/edit/{id}', [AdminController::class, 'edit']);
   Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
   Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
+
+  Route::get('admin/order/list', [OrderController::class, 'list']);
+  Route::get('admin/order/detail/{id}', [OrderController::class, 'order_detail']);
+
 
   #Category
   Route::get('admin/category/list', [CategoryController::class, 'list']);
@@ -119,6 +129,10 @@ Route::get('cart/delete/{id}', [PaymentController::class, 'cart_delete']);
 
 Route::get('checkout', [PaymentController::class, 'checkout']);
 Route::post('checkout/apply_discount_code', [PaymentController::class, 'apply_discount_code']);
+Route::post('checkout/place_order', [PaymentController::class, 'place_order']);
+Route::get('checkout/payment', [PaymentController::class, 'checkout_payment']);
+Route::get('paypal/success-payment', [PaymentController::class, 'paypal_success_payment']);
+Route::get('stripe/payment-success', [PaymentController::class, 'stripe_success_payment']);
 
 Route::post('product/add-to-cart', [PaymentController::class, 'add_to_cart']);
 Route::get('search', [ProductFront::class, 'getProductSearch']);

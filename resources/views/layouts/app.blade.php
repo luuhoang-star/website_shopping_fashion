@@ -77,8 +77,8 @@
                                         {{ csrf_field() }}
                                         <div class="form-group">
                                             <label for="singin-email">Email address *</label>
-                                            <input type="text" class="form-control" id="singin-email"
-                                                name="email" required>
+                                            <input type="text" class="form-control" id="singin-email" name="email"
+                                                required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
@@ -100,7 +100,8 @@
                                                     Me</label>
                                             </div><!-- End .custom-checkbox -->
 
-                                            <a href="#" class="forgot-link">Forgot Your Password?</a>
+                                            <a href="{{ url('forgot-password') }}" class="forgot-link">Forgot Your
+                                                Password?</a>
                                         </div><!-- End .form-footer -->
                                     </form>
 
@@ -201,50 +202,48 @@
 
     @yield('script')
     <script src=" {{ asset('assets/js/main.js') }}"></script>
-    
-<script type="text/javascript">
+
+    <script type="text/javascript">
         $('body').delegate('#SubmitFormLogin', 'submit', function(e) {
-        e.preventDefault();
-        $.ajax({
-            type : "POST",
-            url : " {{ url('auth_login') }}",
-            data : $(this).serialize(),
-            dataType : "json",
-            success: function(data) {
-                 if(data.status == true) {
-                    location.reload();
-                 }
-                 else {
-                    alert(data.message);
-                 }
-            },
-            error: function (data) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: " {{ url('auth_login') }}",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(data) {
+                    if (data.status == true) {
+                        location.reload();
+                    } else {
+                        alert(data.message);
+                    }
+                },
+                error: function(data) {
 
-            }
-        });
-    });
-    
-
-    $('body').delegate('#SubmitFormRegister', 'submit', function(e) {
-        e.preventDefault();
-        $.ajax({
-            type : "POST",
-            url : " {{ url('auth_register') }}",
-            data : $(this).serialize(),
-            dataType : "json",
-            success: function(data) {
-                alert(data.message);
-                if(data.status == true) {
-                    location.reload();
                 }
-            },
-            error: function (data) {
-
-            }
+            });
         });
-    });
 
-</script>
+
+        $('body').delegate('#SubmitFormRegister', 'submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: " {{ url('auth_register') }}",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(data) {
+                    alert(data.message);
+                    if (data.status == true) {
+                        location.reload();
+                    }
+                },
+                error: function(data) {
+
+                }
+            });
+        });
+    </script>
 
 </body>
 

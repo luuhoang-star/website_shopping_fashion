@@ -7,7 +7,9 @@ use App\Models\User;
 use Hash;
 use Auth;
 use Mail;
+use Str;
 use App\Mail\RegisterMail;
+use App\Mail\ForgotPassWordMail;
 class AuthController extends Controller
 {
     public function login_admin()
@@ -106,6 +108,52 @@ class AuthController extends Controller
         $user->save();
 
         return redirect(url(''))->with('success', "Email successfully verified");
+    }
+    public function forgot_password(Request $request)
+    {
+
+        $data['meta_title'] = "Forgot Password";
+        return view('auth.forgot', $data);
+    }
+
+    public function auth_forgot_password(Request $request) {
+        $user = User::where('email', '=', $request->email)->first();
+        if(!empty($user)) {
+            $user->remember_token = Str::random(30);
+            $user->save();
+
+            Mail::to($user->email)->send(New ForgotPassWordMail($user));
+
+            return redirect()->back()->with('success', "Vui lòng kiểm tra email của bạn và đặt lại mật khẩu");
+        }        
+
+    }
+
+    public function reset($token) {
+        $user = User::where('remember_token', '=', $token)->first();
+        if(!empty($user)) {
+            $data['user'] = $user;
+            $data['meta_title'] = "Reset Password";
+            return view('auth.reset', $data);
+        }
+        else {
+            abort(404);
+        }
+    }
+
+    public function auth_reset($token, Request $request) {
+        if($request->password == $request->confirm_password) {
+            $user = User::where('remember_token', '=', $token)->first();
+            $user->password = Hash::make($request->password);
+            $user->remember_token = Str::random(30);
+            $user->email_verified_at = date('Y-m-d H:i:s');
+            $user->save();
+
+            return redirect(url(''))->with('success', "Password successfully reset");
+        }
+        else {
+            return redirect()->back()->with('error', "Password and confirm password does not match");
+        }
     }
 
 }

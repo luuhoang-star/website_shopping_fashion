@@ -22,74 +22,76 @@
         <div class="page-content">
             <div class="checkout">
                 <div class="container">
-                    <form action="#">
+                    <form action="" id="SubmitForm" method="post">
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-lg-9">
                                 <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>First Name *</label>
-                                        <input type="text" class="form-control" required>
+                                        <input type="text" name="first_name" class="form-control" required>
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
                                         <label>Last Name *</label>
-                                        <input type="text" class="form-control" required>
+                                        <input type="text" name="last_name" class="form-control" required>
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
 
                                 <label>Company Name (Optional)</label>
-                                <input type="text" class="form-control">
+                                <input type="text" name="company_name" class="form-control">
 
                                 <label>Country *</label>
-                                <input type="text" class="form-control" required>
+                                <input type="text" name="country_name" class="form-control" required>
 
                                 <label>Street address *</label>
-                                <input type="text" class="form-control" placeholder="House number and Street name"
-                                    required>
-                                <input type="text" class="form-control" placeholder="Appartments, suite, unit etc ..."
-                                    required>
+                                <input type="text" name="address_one" class="form-control"
+                                    placeholder="House number and Street name" required>
+                                <input type="text" name="address_two" class="form-control"
+                                    placeholder="Appartments, suite, unit etc ..." required>
 
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Town / City *</label>
-                                        <input type="text" class="form-control" required>
+                                        <input type="text" name="city" class="form-control" required>
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
-                                        <label>State / County *</label>
-                                        <input type="text" class="form-control" required>
+                                        <label>State*</label>
+                                        <input type="text" name="state" class="form-control" required>
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
 
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Postcode / ZIP *</label>
-                                        <input type="text" class="form-control" required>
+                                        <input type="text" name="postcode" class="form-control" required>
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
                                         <label>Phone *</label>
-                                        <input type="tel" class="form-control" required>
+                                        <input type="tel" name="phone" class="form-control" required>
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
 
                                 <label>Email address *</label>
-                                <input type="email" class="form-control" required>
+                                <input type="email" name="email" class="form-control" required>
 
+                                @if(empty(Auth::check()))
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkout-create-acc">
+                                    <input type="checkbox" name="is_create" class="custom-control-input createAccount" id="checkout-create-acc">
                                     <label class="custom-control-label" for="checkout-create-acc">Create an account?</label>
                                 </div><!-- End .custom-checkbox -->
 
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkout-diff-address">
-                                    <label class="custom-control-label" for="checkout-diff-address">Ship to a different
-                                        address?</label>
-                                </div><!-- End .custom-checkbox -->
+                                <div id="showPassword" style="display: none;">
+                                    <label>Password</label>
+                                    <input type="text" id="inputPassword" name="password" class="form-control">
+                                </div>
+                                @endif
 
                                 <label>Order notes (optional)</label>
-                                <textarea class="form-control" cols="30" rows="4"
+                                <textarea class="form-control" name="note" cols="30" rows="4"
                                     placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
                             </div><!-- End .col-lg-9 -->
                             <aside class="col-lg-3">
@@ -125,7 +127,7 @@
                                                 <td colspan="2">
                                                     <div class="cart-discount">
                                                         <div class="input-group">
-                                                            <input type="text" id="getDiscountCode" class="form-control"
+                                                            <input type="text" name="discount_code" id="getDiscountCode" class="form-control"
                                                                 placeholder="Discount Code">
                                                             <div class="input-group-append">
                                                                 <button id="ApplyDiscount"
@@ -151,13 +153,14 @@
                                                 <tr class="summary-shipping-row">
                                                     <td>
                                                         <div class="custom-control custom-radio">
-                                                            <input type="radio" id="free-shipping{{ $shipping->id }}"
-                                                                name="shipping"
+                                                            <input type="radio" value="{{ $shipping->id }}" id="free-shipping{{ $shipping->id }}"
+                                                                name="shipping" required
                                                                 data-price="{{ !empty($shipping->price) ? $shipping->price : 0 }}"
                                                                 class="custom-control-input getShippingCharge">
                                                             <label class="custom-control-label"
                                                                 for="free-shipping{{ $shipping->id }}">{{ $shipping->name }}</label>
                                                         </div>
+
                                                     </td>
                                                     <td>
                                                         @if (!empty($shipping->price))
@@ -184,75 +187,38 @@
 
                                     <div class="accordion-summary" id="accordion-payment">
 
+                                        <div class="custom-control custom-radio" style="margin-top: 0px;">
+                                            <input type="radio" value="cash" id="Cashondelivery" name="payment_method" required
+                                                class="custom-control-input">
+                                            <label class="custom-control-label"
+                                                for="Cashondelivery">Thanh toán khi nhận hàng</label>
+                                        </div>
+
+                                        
+                                        <div class="custom-control custom-radio" style="margin-top: 0px;">
+                                            <input type="radio" value="paypal" id="PayPal" name="payment_method" required
+                                                class="custom-control-input">
+                                            <label class="custom-control-label"
+                                                for="PayPal">Payable</label>
+                                        </div>
+
+                                        
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" value="stripe" id="CreditCard" name="payment_method" required
+                                                class="custom-control-input">
+                                            <label class="custom-control-label" for="CreditCard">Credit Card (Stripe)</label>
+                                        </div>
 
 
-
-                                        <div class="card">
-                                            <div class="card-header" id="heading-3">
-                                                <h2 class="card-title">
-                                                    <a class="collapsed" role="button" data-toggle="collapse"
-                                                        href="#collapse-3" aria-expanded="false"
-                                                        aria-controls="collapse-3">
-                                                        Cash on delivery
-                                                    </a>
-                                                </h2>
-                                            </div><!-- End .card-header -->
-                                            <div id="collapse-3" class="collapse" aria-labelledby="heading-3"
-                                                data-parent="#accordion-payment">
-                                                <div class="card-body">Quisque volutpat mattis eros. Lorem ipsum dolor sit
-                                                    amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis
-                                                    eros.
-                                                </div><!-- End .card-body -->
-                                            </div><!-- End .collapse -->
-                                        </div><!-- End .card -->
-
-                                        <div class="card">
-                                            <div class="card-header" id="heading-4">
-                                                <h2 class="card-title">
-                                                    <a class="collapsed" role="button" data-toggle="collapse"
-                                                        href="#collapse-4" aria-expanded="false"
-                                                        aria-controls="collapse-4">
-                                                        PayPal <small class="float-right paypal-link">What is
-                                                            PayPal?</small>
-                                                    </a>
-                                                </h2>
-                                            </div><!-- End .card-header -->
-                                            <div id="collapse-4" class="collapse" aria-labelledby="heading-4"
-                                                data-parent="#accordion-payment">
-                                                <div class="card-body">
-                                                    Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non,
-                                                    semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis
-                                                    fermentum.
-                                                </div><!-- End .card-body -->
-                                            </div><!-- End .collapse -->
-                                        </div><!-- End .card -->
-
-                                        <div class="card">
-                                            <div class="card-header" id="heading-5">
-                                                <h2 class="card-title">
-                                                    <a class="collapsed" role="button" data-toggle="collapse"
-                                                        href="#collapse-5" aria-expanded="false"
-                                                        aria-controls="collapse-5">
-                                                        Credit Card (Stripe)
-                                                        <img src="assets/images/payments-summary.png"
-                                                            alt="payments cards">
-                                                    </a>
-                                                </h2>
-                                            </div><!-- End .card-header -->
-                                            <div id="collapse-5" class="collapse" aria-labelledby="heading-5"
-                                                data-parent="#accordion-payment">
-                                                <div class="card-body"> Donec nec justo eget felis facilisis
-                                                    fermentum.Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                                                    Donec odio. Quisque volutpat mattis eros. Lorem ipsum dolor sit ame.
-                                                </div><!-- End .card-body -->
-                                            </div><!-- End .collapse -->
-                                        </div><!-- End .card -->
+               
                                     </div><!-- End .accordion -->
 
                                     <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
                                         <span class="btn-text">Place Order</span>
                                         <span class="btn-hover-text">Proceed to Checkout</span>
                                     </button>
+                                    <br /><br />
+                                    <img src="{{ url('assets/images/payments-summary.png') }}" alt="payments cards">
                                 </div><!-- End .summary -->
                             </aside><!-- End .col-lg-3 -->
                         </div><!-- End .row -->
@@ -264,6 +230,40 @@
 @endsection
 @section('script')
     <script type="text/javascript">
+
+        $('body').delegate('.createAccount', 'change', function() {
+            if(this.checked) {
+                $('#showPassword').show();
+                $("#inputPassword").prop('required',true);
+            } else {
+                $('#showPassword').hide();
+                $("#inputPassword").prop('required',false);
+            }
+        });
+
+        $('body').delegate('#SubmitForm','submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url : "{{ url('checkout/place_order') }}",
+                data : new FormData(this),
+                processData:false,
+                contentType:false,
+                dataType: "json",
+                success: function(data) {
+                    if(data.status == false) {
+                        alert(data.message);
+                    }
+                else {
+                    window.location.href = data.redirect;
+                }
+                },
+                error: function (data) {
+
+                }
+            });
+        });
+
         $('body').delegate('.getShippingCharge', 'click', function() {
             var price = $(this).attr('data-price');
             var total = $('#PayableTotal').val();
@@ -286,8 +286,8 @@
                 dataType: "json",
                 "success": function(data) {
                     $('#getDiscountAmount').html(data.discount_amount) // số tiền giảm giá
-                  var shipping = $('#getShippingChargeTotal').val();
-                  var final_total = parseFloat(shipping) + parseFloat(data.payable_total);
+                    var shipping = $('#getShippingChargeTotal').val();
+                    var final_total = parseFloat(shipping) + parseFloat(data.payable_total);
                     $('#getPayableTotal').html(final_total.toFixed(2));
                     $('#PayableTotal').val(data.payable_total);
                     if (data.status == true) {

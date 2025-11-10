@@ -152,6 +152,16 @@
                     </a>
                 </li>
 
+                    <li class="nav-item">
+                    <a href="{{ url('admin/order/list') }}"
+                        class="nav-link @if (Request::segment(2) == 'order') active @endif">
+                        <i class="nav-icon fas fa-list-alt"></i>
+                        <p>
+                            Orders
+                        </p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{ url('admin/category/list') }}"
                         class="nav-link @if (Request::segment(2) == 'category') active @endif">
@@ -217,14 +227,14 @@
                     </a>
                 </li>
 
-                                <li class="nav-item">
+                <li class="nav-item">
                     <a href="{{ url('admin/shipping_charge/list') }}"
                         class="nav-link @if (Request::segment(2) == 'shipping_charge') active @endif">
                         <i class="nav-icon fab fa-product-hunt"></i>
 
 
                         <p>
-                            Shipping charge 
+                            Shipping charge
                         </p>
                     </a>
                 </li>

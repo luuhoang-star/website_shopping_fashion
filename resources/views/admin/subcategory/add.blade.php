@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-12">
-                        <h1>Add New Sub Category</h1>
+                        <h1>Thêm mới danh mục con</h1>
                     </div>
 
                 </div>
@@ -29,7 +29,7 @@
                                 <div class="card-body">
 
                                     <div class="form-group">
-                                        <label>Category Name
+                                        <label>Tên danh mục chính
                                             <span style="color:red">*</span>
                                         </label>
                                         <select class="form-control" name="category_id" required>
@@ -44,7 +44,7 @@
 
 
                                     <div class="form-group">
-                                        <label>SubCategory Name
+                                        <label>Tên danh mục phụ
                                             <span style="color:red">*</span>
                                         </label>
                                         <input type="text" class="form-control" value= "{{ old('name') }}" required name="name" required
@@ -62,7 +62,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>status <span style="color:red">*</span></label>
+                                        <label>Trạng thái <span style="color:red">*</span></label>
                                         <select class="form-control" name="status" required>
                                             <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Hoạt động
                                             </option>

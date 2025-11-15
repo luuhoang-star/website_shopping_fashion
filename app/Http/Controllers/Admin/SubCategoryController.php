@@ -41,7 +41,7 @@ class SubCategoryController extends Controller
         $subcategory->created_by = Auth::user()->id;
         $subcategory->save();
 
-        return redirect('admin/subcategory/list')->with('success', "Sub category successfully created");
+        return redirect('admin/subcategory/list')->with('success', "Tạo danh mục phụ thành công");
     }
 
     public function edit($id)
@@ -67,7 +67,7 @@ class SubCategoryController extends Controller
         $subcategory->meta_keyword = trim($request->meta_keyword);
         $subcategory->save();
 
-        return redirect('admin/subcategory/list')->with('success', "Sub category success");
+        return redirect('admin/subcategory/list')->with('success', "Cập nhật danh mục phụ thành công");
 
 
     }
@@ -77,7 +77,7 @@ class SubCategoryController extends Controller
         $subcategory = SubCategory::getSingle($id);
         $subcategory->is_delete = 1;
         $subcategory->save();
-        return redirect()->back()->with('success', "Sub Category Sucessfully Deleted");
+        return redirect()->back()->with('success', "Xóa thành công danh mục phụ");
     }
 
     public function get_sub_category(Request $request)

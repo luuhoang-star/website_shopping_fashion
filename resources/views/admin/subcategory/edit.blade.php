@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-12">
-                        <h1>Edit SubCategory</h1>
+                        <h1>Chỉnh sửa danh mục phụ</h1>
                     </div>
 
                 </div>
@@ -28,11 +28,11 @@
                                 @csrf
                                 <div class="card-body">
                                      <div class="form-group">
-                                        <label>Category Name
+                                        <label>Tên danh mục chính
                                             <span style="color:red">*</span>
                                         </label>
                                         <select class="form-control" name="category_id" required>
-                                            <option value="">Select</option>
+                                            <option value="">Lựa chọn</option>
                                             @foreach ($getCategory as $value)
                                                 <option {{ ($value->id == $getRecord->category_id) ? 'selected' : '' }} value="{{ $value->id }}"> {{ $value->name }} </option>
                                             @endforeach
@@ -41,7 +41,7 @@
                                     </div>
  
                                     <div class="form-group">
-                                        <label>Sub Category Name
+                                        <label>Tên danh mục phụ
                                             <span style="color:red">*</span>
                                         </label>
                                         <input type="text" class="form-control" name="name" required
@@ -62,7 +62,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>status <span style="color:red">*</span></label>
+                                        <label>Trạng thái <span style="color:red">*</span></label>
                                         <select class="form-control" name="status" required>
                                             <option value="0"
                                                 {{ old('status', $getRecord->status) == 0 ? 'selected' : '' }}>Hoạt động
@@ -75,7 +75,7 @@
                                     <hr>
 
                                     <div class="form-group">
-                                        <label>Meta title
+                                        <label>Tiêu đề meta
                                             <span style="color:red">*</span>
                                         </label>
                                         <input type="text" class="form-control" required
@@ -84,14 +84,14 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Meta Description
+                                        <label>Mô tả meta
                                             <span style="color:red">*</span>
                                         </label>
                                         <textarea class="form-control" placeholder="Meta Description" name="meta_description">{{ old('meta_description', $getRecord->meta_description) }}</textarea>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Meta Keyword</label>
+                                        <label>Từ khóa meta</label>
                                         <input type="text" class="form-control"
                                             value="{{ old('meta_keywords', $getRecord->meta_keyword) }}"
                                             name="meta_keyword" placeholder="Meta Keyword">
@@ -100,7 +100,7 @@
 
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">Cập nhật</button>
                                 </div>
                             </form>
                         </div>

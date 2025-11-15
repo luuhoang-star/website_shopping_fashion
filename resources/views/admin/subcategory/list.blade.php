@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Category List</h1>
+                        <h1>Danh sách danh mục phụ</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right";>
                         <a href="{{ url('admin/subcategory/add/') }}" class="btn btn-primary"> Thêm danh mục con </a>
@@ -31,7 +31,7 @@
                         @include('admin.layouts._message')
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Sub Category List</h3>
+                                <h3 class="card-title">Danh sách danh mục phụ</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
@@ -42,13 +42,13 @@
                                             <th>Tên danh mục chính</th>
                                             <th>Tên danh mục phụ</th>
                                             <th>Slug</th>
-                                            <th>Meta title</th>
-                                            <th>Meta Description</th>
-                                            <th>Meta KeyWords</th>
-                                            <th>Tên người tạo (create:phụ)</th>
-                                            <th>Status</th>
+                                            <th>Tiêu đề meta</th>
+                                            <th>Mô tả meta</th>
+                                            <th>Từ khóa meta</th>
+                                            <th>Tạo bởi</th>
+                                            <th>Trạng thái</th>
                                             <th>Ngày tạo</th>
-                                            <th>Action</th>
+                                            <th>Hành dộng</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -66,7 +66,7 @@
                                                 <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
                                                 <td>
                                                     <a href="{{ url('admin/subcategory/edit/' . $value->id) }}"
-                                                        class="btn btn-primary">Edit</a>
+                                                        class="btn btn-primary">Sửa</a>
                                                     <a href="{{ url('admin/subcategory/delete/' . $value->id) }}"
                                                         onclick="return confirm('Xóa danh mục này?')"
                                                         class="btn btn-danger">Xóa</a>
@@ -96,7 +96,7 @@
         <!-- /.content -->
     </div>
 @endsection
-}
+
 
 @section('script')
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

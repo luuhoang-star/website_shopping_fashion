@@ -26,6 +26,21 @@ class ProductController extends Controller
         $data['header_title'] = 'Product';
         return view('admin.product.list', $data);
     }
+
+    public function delete($id)
+{
+    $product = Product::getSingle($id);
+
+    if (!empty($product)) {
+        $product->is_delete = 1; // xóa mềm
+        $product->save();
+
+        return redirect()->back()->with('success', 'Xóa sản phẩm thành công');
+    }
+
+    abort(404);
+}
+
     public function add()
     {
         $data['header_title'] = 'Add New Product';
@@ -178,5 +193,7 @@ class ProductController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+   
 
 }

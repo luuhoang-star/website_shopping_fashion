@@ -41,7 +41,7 @@ class CategoryController extends Controller
         $category->save();
 
         // Chuyển hướng sau khi thêm thành công
-        return redirect('admin/category/list')->with('success', "Category Successfully Created");
+        return redirect('admin/category/list')->with('success', "Tạo danh mục thành công!");
     }
 
     public function edit($id)
@@ -76,7 +76,7 @@ class CategoryController extends Controller
         $category->is_delete = 1;
         $category->save();
 
-        return redirect()->back()->with('success', " Category xóa thành công");
+        return redirect()->back()->with('success', " Danh mục xóa thành công");
     }
 
 }

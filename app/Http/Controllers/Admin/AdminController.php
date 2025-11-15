@@ -67,9 +67,15 @@ class AdminController extends Controller
     if ($user) {
         $user->is_delete = 1; //1 là xóa_mềm
         $user->save();
-        return redirect()->back()->with('success', 'Đã xóa thành công admin');
+        return redirect()->back()->with('success', 'Bản ghi đã xóa thành công!');
     } 
     
+}
+
+public function customer_list() {
+    $data['getRecord'] = User::getCustomer();
+    $data['header_title'] = 'Customer';
+    return view('admin.customer.list', $data);
 }
 
 

@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-12">
-                        <h1>Add New Admin</h1>
+                        <h1>Thêm Admin Mới</h1>
                     </div>
 
                 </div>
@@ -28,7 +28,7 @@
                                 @csrf
                                 <div class="card-body">
                                        <div class="form-group">
-                                        <label for="exampleInputEmail1">Name</label>
+                                        <label for="exampleInputEmail1">Tên admin</label>
                                         <input type="text" class="form-control" name="name" required value="{{  old('name') }}"
                                             placeholder="Enter Name">
                                         
@@ -41,13 +41,13 @@
                                             <div style="color:red">{{ $errors->first('email') }}</div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
+                                        <label for="exampleInputPassword1">Mật khẩu</label>
                                         <input type="password" class="form-control" name="password"
                                             placeholder="Password">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>status(trạng thái)</label>
+                                        <label>Trạng thái</label>
                                         <select class="form-control" name="status" required>
                                             <option value="0" {{ (old('status') == 0) ? 'selected' : '' }}>Hoạt động</option>
                                             <option value="1" {{( old('status') == 1) ?' selected' : '' }}>No hoạt động</option>

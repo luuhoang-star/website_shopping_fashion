@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderInvoiceMail extends Mailable
+class OrderStatusMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,8 +19,8 @@ class OrderInvoiceMail extends Mailable
 
     public function build()
     {
-        return $this->subject('E-Commerce Order Invoice')
-                    ->view('emails.order_invoice') // dùng view HTML thuần
+        return $this->subject('E-Commerce Order Status')
+                    ->view('emails.order_status') // dùng view HTML thuần
                     ->with([
                         'order' => $this->order,
                     ]);

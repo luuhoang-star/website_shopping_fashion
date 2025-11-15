@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-12">
-                        <h1>Edit Admin</h1>
+                        <h1>Chỉnh sửa admin</h1>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="name">Name</label>
+                                        <label for="name">Tên admin</label>
                                         <input type="text" class="form-control" name="name"
                                             value="{{ old('name', $getRecord->name) }}" required placeholder="Enter Name">
                                         <!--hiển thị dữ liệu cũ khi đã submit nhằm đỡ gõ lại ,hoặc hiện thị dữ liệu có sẵn khi chưa submit để sửa cái khác(tăng tính trải nghiệm)-->
@@ -44,13 +44,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="password">Password</label>
+                                        <label for="password">Mật khẩu</label>
                                         <input type="text" class="form-control" name="password" placeholder="Password">
                                         <p>Nếu bạn muốn đổi mật khẩu thì hãy nhập vào</p>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Status</label>
+                                        <label>Trạng thái</label>
                                         <select class="form-control" name="status" required>
                                             <option {{ $getRecord->status == 0 ? 'selected' : '' }} value="0">Active
                                             </option>
@@ -61,7 +61,7 @@
                                 </div>
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">Cập nhật</button>
                                 </div>
                             </form>
                         </div>

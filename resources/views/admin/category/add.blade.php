@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-12">
-                        <h1>Add New Category</h1>
+                        <h1>Thêm mới danh mục</h1>
                     </div>
 
                 </div>
@@ -28,7 +28,7 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Category Name
+                                        <label>Tên danh mục
                                             <span style="color:red">*</span>
                                         </label>
                                         <input type="text" class="form-control" name="name" required
@@ -46,7 +46,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>status <span style="color:red">*</span></label>
+                                        <label>Trạng thái <span style="color:red">*</span></label>
                                         <select class="form-control" name="status" required>
                                             <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Hoạt động
                                             </option>

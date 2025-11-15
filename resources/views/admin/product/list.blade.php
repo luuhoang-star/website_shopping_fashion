@@ -39,11 +39,11 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Title</th>
-                                            <th>Create by name</th>
-                                            <th>Status</th>
-                                            <th>Created Date</th>
-                                            <th>Action</th>
+                                            <th>Tiêu đề</th>
+                                            <th>Tạo bởi</th>
+                                            <th>Trạng thái</th>
+                                            <th>Ngày tạo</th>
+                                            <th>Hành động</th>
 
                                         </tr>
                                     </thead>
@@ -58,11 +58,14 @@
                                                 <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
                                                 <td>
                                                     <a href="{{ url('admin/product/edit/' . $value->id) }}"
-                                                        class="btn btn-primary">Edit</a>
+                                                        class="btn btn-primary">Sửa</a>
+                                                
+                                               
                                                     <a href="{{ url('admin/product/delete/' . $value->id) }}"
                                                         onclick="return confirm('Xóa sản phẩm này?')"
                                                         class="btn btn-danger">Xóa</a>
-                                                </td>
+                                            </td>
+                                                
                                             </tr>
                                         @endforeach
                                     </tbody>

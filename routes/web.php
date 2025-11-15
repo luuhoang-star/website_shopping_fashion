@@ -54,9 +54,11 @@ Route::group(['middleware' => 'admin'], function () {
   Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
   Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
 
+  Route::get('admin/customer/list', [AdminController::class, 'customer_list']);
+
   Route::get('admin/order/list', [OrderController::class, 'list']);
   Route::get('admin/order/detail/{id}', [OrderController::class, 'order_detail']);
-
+  Route::get('admin/order_status ', [OrderController::class, 'order_status']);
 
   #Category
   Route::get('admin/category/list', [CategoryController::class, 'list']);
@@ -98,6 +100,8 @@ Route::group(['middleware' => 'admin'], function () {
   Route::post('admin/product/add', [ProductController::class, 'insert']);
   Route::get('admin/product/edit/{id}', [ProductController::class, 'edit']);
   Route::post('admin/product/update/{id}', [ProductController::class, 'update']);
+  Route::get('admin/product/delete/{id}', [ProductController::class, 'delete']);
+
 
   Route::get('admin/product/image_delete/{id}', [ProductController::class, 'image_delete']);
   Route::post('admin/product_image_sortable', [ProductController::class, 'product_image_sortable']);

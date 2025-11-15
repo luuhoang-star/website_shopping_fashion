@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-12">
-                        <h1>Add New Product</h1>
+                        <h1>Thêm mới sản phẩm</h1>
                     </div>
 
                 </div>
@@ -28,7 +28,7 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Title
+                                        <label>Tiêu đề
                                             <span style="color:red">*</span>
                                         </label>
                                         <input type="text" class="form-control" name="title" required

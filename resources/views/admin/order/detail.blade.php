@@ -128,7 +128,19 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Trạng thái :</label>
+                                    <label>Trạng thái :
+                                        @if ($getRecord->status == 0)
+                                                        Đang Chờ
+                                                    @elseif($getRecord->status == 1)
+                                                        Đang xử lý
+                                                    @elseif($getRecord->status == 2)
+                                                        Đã giao hàng
+                                                    @elseif($getRecord->status == 3)
+                                                        Đã hoàn thành
+                                                    @elseif($getRecord->status == 4)
+                                                        Đã hủy
+                                                    @endif
+                                    </label>
                                 </div>
 
                                 <div class="form-group">

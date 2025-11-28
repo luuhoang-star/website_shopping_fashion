@@ -168,10 +168,10 @@
                                                             <tr>
                                                                 <td><input type="text" value="{{ $size->name }}"
                                                                         name="size[{{ $i_s }}][name] class="form-control"
-                                                                        placeholder="Name"></td>
+                                                                        placeholder="Tên size"></td>
                                                                 <td><input type="text" value="{{ $size->price }}"
                                                                         name="size[{{ $i_s }}][price]"
-                                                                        class="form-control" placeholder="Price"></td>
+                                                                        class="form-control" placeholder="Giá"></td>
                                                                 <td style="width:100px;">
                                                                     <button type="button" id="{{ $i_s }}"
                                                                         class="btn btn-danger DeleteSize">Xóa</button>
@@ -181,15 +181,15 @@
                                                         <tr>
                                                             <td>
                                                                 <input type="text" name="size[100][name]"
-                                                                    placeholder="Name" class="form-control">
+                                                                    placeholder="Tên size" class="form-control">
                                                             </td>
                                                             <td>
                                                                 <input type="text" name="size[100][price]"
-                                                                    placeholder="Price" class="form-control">
+                                                                    placeholder="Giá" class="form-control">
                                                             </td>
                                                             <td style="width:200px;">
                                                                 <button type="button"
-                                                                    class="btn btn-primary AddSize">Add</button>
+                                                                    class="btn btn-primary AddSize">Thêm</button>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -249,13 +249,13 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Thông tin bổ sung <span style="color:red">*</span></label>
-                                                <textarea name="additional_information" class="form-control editor" required placeholder="additional_information">{{ old('additional_information', $product->additional_information ?? '') }}</textarea>
+                                                <textarea name="additional_information" class="form-control editor" required placeholder="Thông tin bổ sung">{{ old('additional_information', $product->additional_information ?? '') }}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Chính sách đổi trả <span style="color:red">*</span></label>
-                                                <textarea name="shipping_returns" class="form-control editor" required placeholder="shipping_returns">{{ old('shipping_returns', $product->shipping_returns ?? '') }}</textarea>
+                                                <textarea name="shipping_returns" class="form-control editor" required placeholder="Chính sách đổi trả">{{ old('shipping_returns', $product->shipping_returns ?? '') }}</textarea>
                                             </div>
                                         </div>
 

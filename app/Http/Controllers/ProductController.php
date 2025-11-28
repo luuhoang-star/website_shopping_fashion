@@ -8,13 +8,26 @@ use App\Models\SubCategory;
 use App\Models\Product;
 use App\Models\Color;
 use App\Models\Brand;
+use Auth;
 class ProductController extends Controller
 {
-    public function getProductSearch(Request $request)
+    public function my_wishlist()
     {
-        $data['meta_title'] = 'Search';
+        $data['meta_title'] = 'Danh sách yêu thích';
         $data['meta_description'] = '';
         $data['meta_keyword'] = '';
+
+        $data['getProduct'] = Product::getMyWishlist(Auth::user()->id);
+
+        return view('product.my_wishlist', $data);
+    }
+
+    public function getProductSearch(Request $request)
+    {
+        $data['meta_title'] = 'Tìm kiếm';
+        $data['meta_description'] = '';
+        $data['meta_keyword'] = '';
+
 
 
         $getProduct = Product::getProduct();
@@ -32,10 +45,10 @@ class ProductController extends Controller
         $data['page'] = $page;
         $data['getProduct'] = $getProduct;
 
-        
+
         $data['getColor'] = Color::getRecordActive();
         $data['getBrand'] = Brand::getRecordActive();
-        
+
         return view('product.list', $data);
 
     }

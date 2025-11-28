@@ -30,32 +30,32 @@
                                        <div class="form-group">
                                         <label for="exampleInputEmail1">Tên admin</label>
                                         <input type="text" class="form-control" name="name" required value="{{  old('name') }}"
-                                            placeholder="Enter Name">
+                                            placeholder="Tên admin">
                                         
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email</label>
                                         <input type="email" class="form-control" name="email" required value="{{ old('email')}}"
-                                            placeholder="Enter Email">
+                                            placeholder="Email">
                                             <div style="color:red">{{ $errors->first('email') }}</div>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Mật khẩu</label>
                                         <input type="password" class="form-control" name="password"
-                                            placeholder="Password">
+                                            placeholder="Mật khẩu">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Trạng thái</label>
                                         <select class="form-control" name="status" required>
                                             <option value="0" {{ (old('status') == 0) ? 'selected' : '' }}>Hoạt động</option>
-                                            <option value="1" {{( old('status') == 1) ?' selected' : '' }}>No hoạt động</option>
+                                            <option value="1" {{( old('status') == 1) ?' selected' : '' }}>Không hoạt động</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Xác nhận</button>
                                 </div>
                             </form>
                         </div>

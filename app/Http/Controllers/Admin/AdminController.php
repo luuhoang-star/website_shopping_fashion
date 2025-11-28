@@ -67,7 +67,7 @@ class AdminController extends Controller
     if ($user) {
         $user->is_delete = 1; //1 là xóa_mềm
         $user->save();
-        return redirect()->back()->with('success', 'Bản ghi đã xóa thành công!');
+        return redirect()->back()->with('success', 'Xoá admin thành công!');
     } 
     
 }

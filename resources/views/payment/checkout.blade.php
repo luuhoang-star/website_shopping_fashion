@@ -6,15 +6,15 @@
     <main class="main">
         <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
             <div class="container">
-                <h1 class="page-title">Checkout<span>Shop</span></h1>
+                <h1 class="page-title">Cửa hàng<span>thanh toán</span></h1>
             </div><!-- End .container -->
         </div><!-- End .page-header -->
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                    <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="#">Cửa hàng</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Thanh toán</li>
                 </ol>
             </div><!-- End .container -->
         </nav><!-- End .breadcrumb-nav -->
@@ -26,83 +26,83 @@
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-lg-9">
-                                <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
+                                <h2 class="checkout-title">Chi tiết hóa đơn</h2><!-- End .checkout-title -->
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <label>First Name *</label>
+                                        <label>Tên *</label>
                                         <input type="text" name="first_name" class="form-control" required>
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
-                                        <label>Last Name *</label>
+                                        <label>Họ *</label>
                                         <input type="text" name="last_name" class="form-control" required>
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
 
-                                <label>Company Name (Optional)</label>
+                                <label>Tên công ty (Không bắt buộc)</label>
                                 <input type="text" name="company_name" class="form-control">
 
-                                <label>Country *</label>
+                                <label>Quốc gia *</label>
                                 <input type="text" name="country_name" class="form-control" required>
 
-                                <label>Street address *</label>
+                                <label>Địa chỉ đường *</label>
                                 <input type="text" name="address_one" class="form-control"
-                                    placeholder="House number and Street name" required>
+                                    placeholder="Số nhà và tên đường" required>
                                 <input type="text" name="address_two" class="form-control"
-                                    placeholder="Appartments, suite, unit etc ..." required>
+                                    placeholder="Căn hộ, phòng, đơn vị…" required>
 
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <label>Town / City *</label>
+                                        <label>Thành phố *</label>
                                         <input type="text" name="city" class="form-control" required>
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
-                                        <label>State*</label>
+                                        <label>Khu vực*</label>
                                         <input type="text" name="state" class="form-control" required>
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
 
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <label>Postcode / ZIP *</label>
+                                        <label>Mã thành phố / ZIP *</label>
                                         <input type="text" name="postcode" class="form-control" required>
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
-                                        <label>Phone *</label>
+                                        <label>Số điện thoại *</label>
                                         <input type="tel" name="phone" class="form-control" required>
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
 
-                                <label>Email address *</label>
+                                <label>Email *</label>
                                 <input type="email" name="email" class="form-control" required>
 
                                 @if(empty(Auth::check()))
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" name="is_create" class="custom-control-input createAccount" id="checkout-create-acc">
-                                    <label class="custom-control-label" for="checkout-create-acc">Create an account?</label>
+                                    <label class="custom-control-label" for="checkout-create-acc">Tạo một tài khoản?</label>
                                 </div><!-- End .custom-checkbox -->
 
                                 <div id="showPassword" style="display: none;">
-                                    <label>Password</label>
+                                    <label>Mật khẩu</label>
                                     <input type="text" id="inputPassword" name="password" class="form-control">
                                 </div>
                                 @endif
 
-                                <label>Order notes (optional)</label>
+                                <label>Ghi chú đơn hàng (Không bắt buộc)</label>
                                 <textarea class="form-control" name="note" cols="30" rows="4"
-                                    placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+                                    placeholder="Ghi chú về đơn hàng của bạn, ví dụ: hàng dễ vỡ đó nha!"></textarea>
                             </div><!-- End .col-lg-9 -->
                             <aside class="col-lg-3">
                                 <div class="summary">
-                                    <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+                                    <h3 class="summary-title">Đơn hàng của bạn</h3><!-- End .summary-title -->
 
                                     <table class="table table-summary">
                                         <thead>
                                             <tr>
-                                                <th>Product</th>
-                                                <th>Total</th>
+                                                <th>Sản phẩm</th>
+                                                <th>Tổng tiền</th>
                                             </tr>
                                         </thead>
 
@@ -120,7 +120,7 @@
                                                 </tr>
                                             @endforeach
                                             <tr class="summary-subtotal">
-                                                <td>Subtotal:</td>
+                                                <td>Tiền phụ:</td>
                                                 <td>${{ number_format(Cart::getSubTotal(), 2) }}</td>
                                             </tr><!-- End .summary-subtotal -->
                                             <tr>
@@ -128,7 +128,7 @@
                                                     <div class="cart-discount">
                                                         <div class="input-group">
                                                             <input type="text" name="discount_code" id="getDiscountCode" class="form-control"
-                                                                placeholder="Discount Code">
+                                                                placeholder="Mã giảm giá">
                                                             <div class="input-group-append">
                                                                 <button id="ApplyDiscount"
                                                                     style="height: 38px;"type="button"
@@ -140,12 +140,12 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Discount:</td>
+                                                <td>Mã giảm giá:</td>
                                                 <td>$<span id="getDiscountAmount">0.00</span></td>
                                             </tr><!-- End .summary-subtotal -->
 
                                             <tr class="summary-shipping">
-                                                <td>Shipping:</td>
+                                                <td>Phí vận chuyển:</td>
                                                 <td>&nbsp;</td>
                                             </tr>
 
@@ -174,7 +174,7 @@
 
                                             <tr class="summary-total">
 
-                                                <td>Total:</td>
+                                                <td>Tổng tiền:</td>
                                                 <td>$<span
                                                         id="getPayableTotal">${{ number_format(Cart::getSubTotal(), 2) }}</span>
                                                 </td>
@@ -214,8 +214,8 @@
                                     </div><!-- End .accordion -->
 
                                     <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
-                                        <span class="btn-text">Place Order</span>
-                                        <span class="btn-hover-text">Proceed to Checkout</span>
+                                        <span class="btn-text">Đặt hàng</span>
+                                        <span class="btn-hover-text">Tiến hành thanh toán</span>
                                     </button>
                                     <br /><br />
                                     <img src="{{ url('assets/images/payments-summary.png') }}" alt="payments cards">

@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-12">
-                        <h1>Add New Color</h1>
+                        <h1>Thêm mới màu sắc</h1>
                     </div>
 
                 </div>
@@ -28,31 +28,31 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Color Name
+                                        <label>Tên màu
                                             <span style="color:red">*</span>
                                         </label>
                                         <input type="text" class="form-control" name="name" required
-                                            value="{{ old('name') }}">
+                                            value="{{ old('name') }}" placeholder="Tên màu">
 
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Code Name
+                                        <label>Mã màu
                                             <span style="color:red">*</span>
                                         </label>
                                         <input type="color" class="form-control" name="code" required
-                                            value="{{ old('code') }}" placeholder="Color code">
+                                            value="{{ old('code') }}" placeholder="Mã màu">
 
                                     </div>
 
 
 
                                     <div class="form-group">
-                                        <label>status <span style="color:red">*</span></label>
+                                        <label>Trạng thái <span style="color:red">*</span></label>
                                         <select class="form-control" name="status" required>
                                             <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Hoạt động
                                             </option>
-                                            <option value="1" {{ old('status') == 1 ? ' selected' : '' }}>No hoạt
+                                            <option value="1" {{ old('status') == 1 ? ' selected' : '' }}>Không hoạt
                                                 động</option>
                                         </select>
                                     </div>
@@ -63,7 +63,7 @@
 
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Xác nhận</button>
                                 </div>
                             </form>
                         </div>

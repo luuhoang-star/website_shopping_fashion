@@ -160,22 +160,22 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Order Number</th>
+                                            <th>Mã đơn hàng</th>
                                             <th>Tên</th>
-                                            <th>Country</th>
-                                            <th>Address</th>
-                                            <th>City</th>
-                                            <th>State</th>
-                                            <th>Postcode</th>
-                                            <th>Phone</th>
+                                            <th>Quốc gia</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Thành phố</th>
+                                            <th>Khu vực</th>
+                                            <th>Mã thành phố</th>
+                                            <th>Số điện thoại</th>
                                             <th>Email</th>
-                                            <th>Discount Code</th>
-                                            <th>Discount Amount</th>
-                                            <th>Shipping Amount</th>
-                                            <th>Total Amount ($)</th>
-                                            <th>Payment Method</th>
-                                            <th>Created Date</th>
-                                            <th>Action</th>
+                                            <th>Mã giảm giá</th>
+                                            <th>Sô tiền giảm giá</th>
+                                            <th>Phí ship</th>
+                                            <th>Tổng tiền ($)</th>
+                                            <th>Phương thức thanh toán</th>
+                                            <th>Ngày tạo</th>
+                                            <th>Hành động</th>
 
 
                                         </tr>
@@ -203,7 +203,7 @@
                                                 <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
                                                 <td>
                                                     <a href="{{ url('admin/order/detail/' . $value->id) }}"
-                                                        class="btn btn-primary">Detail</a>
+                                                        class="btn btn-primary">Chi tiết</a>
                                                 </td>
                                             </tr>
                                         @endforeach

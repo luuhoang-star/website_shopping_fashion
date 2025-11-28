@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-12">
-                        <h1>Edit Shipping Charge</h1>
+                        <h1>Chỉnh sửa phí vận chuyển</h1>
                     </div>
 
                 </div>
@@ -32,17 +32,17 @@
                                             <span style="color:red">*</span>
                                         </label>
                                         <input type="text" class="form-control" name="name" required
-                                            value="{{ old('name', $getRecord->name) }}" placeholder="Shipping Charge Name">
+                                            value="{{ old('name', $getRecord->name) }}" placeholder="Tên phí vận chuyển">
 
                                     </div>
 
 
                                 <div class="form-group">
-                                    <label>Price
+                                    <label>Giá
                                         <span style="color:red">*</span>
                                     </label>
                                     <input type="text" class="form-control" name="price" required
-                                        value="{{ old('price', $getRecord->price) }}" placeholder="Price">
+                                        value="{{ old('price', $getRecord->price) }}" placeholder="Giá">
 
                                 </div>
 
@@ -50,13 +50,13 @@
 
 
                                 <div class="form-group">
-                                    <label>status <span style="color:red">*</span></label>
+                                    <label>Trạng thái <span style="color:red">*</span></label>
                                     <select class="form-control" name="status" required>
                                         <option value="0"
                                             {{ old('status', $getRecord->status) == 0 ? 'selected' : '' }}>Hoạt động
                                         </option>
                                         <option value="1"
-                                            {{ old('status', $getRecord->status) == 1 ? ' selected' : '' }}>No hoạt
+                                            {{ old('status', $getRecord->status) == 1 ? ' selected' : '' }}>Không hoạt
                                             động</option>
                                     </select>
                                 </div>
@@ -67,7 +67,7 @@
 
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">Cập nhật</button>
                         </div>
                         </form>
                     </div>

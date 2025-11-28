@@ -27,15 +27,19 @@
                      <li>
                          <a href="#">Links</a>
                          <ul>
-                             <li><a href="tel:#"><i class="icon-phone"></i>Call: 0973.797.151</a></li>
-                             <li><a href="wishlist.html"><i class="icon-heart-o"></i>My Wishlist <span>(3)</span></a>
-                             </li>
-                             <li><a href="{{ url('about') }}">About Us</a></li>
-                             <li><a href="{{ url('contact') }}">Contact Us</a></li>
+                             <li><a href="tel:#"><i class="icon-phone"></i>Gọi: 0973.797.151</a></li>
                              @if(!empty(Auth::check()))
-                             <li><a href="{{ url('admin/logout') }}"><i class="icon-user"></i>Logout</a></li>
+                             <li><a href="{{ url('my-wishlist')}}"><i class="icon-heart-o"></i>Danh sách yêu thích</a>
+                             </li>
+                             @else
+                                <li><a href="#signin-modal" data-toggle="modal"><i class="icon-hear-o"></i>Danh sách yêu thích</a></li>
+                             @endif
+                             <li><a href="{{ url('about') }}">Về chúng tôi</a></li>
+                             <li><a href="{{ url('contact') }}">Liên hệ chúng tôi</a></li>
+                             @if(!empty(Auth::check()))
+                             <li><a href="{{ url('user/dashboard') }}"><i class="icon-user"></i>{{ Auth::user()->name }}</a></li>
                            @else
-                             <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a></li>
+                             <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Đăng nhập</a></li>
                             
                              @endif
                          </ul>
@@ -61,12 +65,12 @@
                  <nav class="main-nav">
                      <ul class="menu sf-arrows">
                          <li class="">
-                             <a href="{{ url('') }}">Home</a>
+                             <a href="{{ url('') }}">Trang chủ</a>
 
 
                          </li>
                          <li>
-                             <a href="javascript:void(0);" class="sf-with-ul">Shop</a>
+                             <a href="javascript:void(0);" class="sf-with-ul">Cửa hàng</a>
                              <div class="megamenu megamenu-md">
                                  <div class="row no-gutters">
                                      <div class="col-md-12">
@@ -105,15 +109,15 @@
                              </div>
                          </li>
                          <li>
-                             <a href="product.html" class="sf-with-ul">Product</a>
+                             <a href="product.html" class="sf-with-ul">Sản phẩm</a>
 
                              <div class="megamenu megamenu-sm">
                                  <div class="row no-gutters">
                                      <div class="col-md-6">
                                          <div class="menu-col">
-                                             <div class="menu-title">Product Details</div><!-- End .menu-title -->
+                                             <div class="menu-title">Chi tiết sản phẩm</div><!-- End .menu-title -->
                                              <ul>
-                                                 <li><a href="product.html">Default</a></li>
+                                                 <li><a href="product.html">Mặc định</a></li>
                                                  <li><a href="product-centered.html">Centered</a></li>
                                                  <li><a href="product-extended.html"><span>Extended Info<span
                                                                  class="tip tip-new">New</span></span></a></li>
@@ -153,9 +157,9 @@
                              class="icon-search"></i></a>
                      <form action="{{ url('search') }}" method="get">
                          <div class="header-search-wrapper">
-                             <label for="q" class="sr-only">Search</label>
+                             <label for="q" class="sr-only">Tìm kiếm</label>
                              <input type="search" class="form-control" name="q" id="q"
-                                 placeholder="Search in..." value="{{ !empty(Request::get('q')) ? Request::get('q') : '' }}" required>
+                                 placeholder="Tìm kiếm..." value="{{ !empty(Request::get('q')) ? Request::get('q') : '' }}" required>
                          </div>
                      </form>
                  </div><!-- End .header-search -->
@@ -205,14 +209,14 @@
                          </div><!-- End .cart-product -->
 
                          <div class="dropdown-cart-total">
-                             <span>Total</span>
+                             <span>Tổng tiền</span>
 
                              <span class="cart-total-price">${{ number_format(Cart::getSubTotal(),2) }}</span>
                          </div><!-- End .dropdown-cart-total -->
 
                          <div class="dropdown-cart-action">
-                             <a href="{{ url('cart') }}" class="btn btn-primary">View Cart</a>
-                             <a href="{{ url('checkout') }}" class="btn btn-outline-primary-2"><span>Checkout</span><i
+                             <a href="{{ url('cart') }}" class="btn btn-primary">Giỏ hàng</a>
+                             <a href="{{ url('checkout') }}" class="btn btn-outline-primary-2"><span>Thanh toán</span><i
                                      class="icon-long-arrow-right"></i></a>
                          </div><!-- End .dropdown-cart-total -->
                      </div><!-- End .dropdown-menu -->

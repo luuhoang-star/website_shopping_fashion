@@ -35,12 +35,12 @@ class DiscountCodeController extends Controller
         $DiscountCode->save();
 
         // Chuyển hướng sau khi thêm thành công
-        return redirect('admin/discount_code/list')->with('success', "DiscountCode Successfully Created");
+        return redirect('admin/discount_code/list')->with('success', "Thêm mới mã giảm giá thành công!");
     }
     public function edit($id)
     {
         $data['getRecord'] = DiscountCode::getSingle($id);
-        $data['header_title'] = 'Edit Discount Code';
+        $data['header_title'] = 'Chỉnh sửa mã giảm giá thành công!';
         return view('admin.discountcode.edit', $data);
     }
 
@@ -58,7 +58,7 @@ class DiscountCodeController extends Controller
         $DiscountCode->save();
 
         // Chuyển hướng sau khi thêm thành công
-        return redirect('admin/discount_code/list')->with('success', "Cập nhật max giam gia thành công");
+        return redirect('admin/discount_code/list')->with('success', "Cập nhật mã giảm giá thành công");
     }
 
     public function delete($id)
@@ -67,6 +67,6 @@ class DiscountCodeController extends Controller
         $DiscountCode->is_delete = 1;
         $DiscountCode->save();
 
-        return redirect()->back()->with('success', "DiscountCode Successfully deleted");
+        return redirect()->back()->with('success', "Xóa mã giảm giá thành công!");
     }
 }

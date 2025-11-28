@@ -39,7 +39,7 @@ class BrandController extends Controller
         $brand->save();
 
         // Chuyển hướng sau khi thêm thành công
-        return redirect('admin/brand/list')->with('success', "Category Successfully Created");
+        return redirect('admin/brand/list')->with('success', "Thêm thương hiệu thành công!");
     }
     public function edit($id)
     {
@@ -65,7 +65,7 @@ class BrandController extends Controller
         $brand->save();
 
         // Chuyển hướng sau khi thêm thành công
-        return redirect('admin/brand/list')->with('success', "Cập nhật thương hiệu thành công");
+        return redirect('admin/brand/list')->with('success', "Cập nhật thương hiệu thành công!");
     }
 
     public function delete($id) {
@@ -73,6 +73,6 @@ class BrandController extends Controller
         $brand->is_delete = 1;
         $brand->save();
 
-        return redirect()->back()->with('success', "Brand Successfully deleted");
+        return redirect()->back()->with('success', "Xóa thương hiệu thành công");
     }
 }

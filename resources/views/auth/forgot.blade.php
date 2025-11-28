@@ -12,7 +12,7 @@
                         <ul class="nav nav-pills nav-fill" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link" id="signin-tab-2" data-toggle="tab" href="#signin-2" role="tab"
-                                    aria-controls="signin-2" aria-selected="false">Forgot Password</a>
+                                    aria-controls="signin-2" aria-selected="false">Quên mật khẩu</a>
                             </li>
 
                         </ul>
@@ -22,7 +22,7 @@
                                 <form action="" method="post">
                                     {{ csrf_field() }}
                                     <div class="form-group" style="margin-top: 40px;>
-                                        <label for="singin-email-2">Email address *</label>
+                                        <label for="singin-email-2">Email</label>
                                         <input type="text" class="form-control" id="singin-email-2" name="email"
                                             required>
                                     </div><!-- End .form-group -->
@@ -31,7 +31,7 @@
 
                                     <div class="form-footer">
                                         <button type="submit" class="btn btn-outline-primary-2">
-                                            <span>Forgot</span>
+                                            <span>Quên</span>
                                             <i class="icon-long-arrow-right"></i>
                                         </button>
 

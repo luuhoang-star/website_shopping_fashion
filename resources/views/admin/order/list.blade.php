@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Danh sách đơn hàng (Total: {{ $getRecord->total() }})</h1>
+                        <h1>Danh sách đơn hàng (Tổng: {{ $getRecord->total() }})</h1>
                     </div>
 
 
@@ -47,7 +47,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Tên công ty</label>
-                                                <input type="text" name="company_name" placeholder="Company Name"
+                                                <input type="text" name="company_name" placeholder="Tên công ty"
                                                     class="form-control" value="{{ Request::get('company_name') }}">
                                             </div>
                                         </div>
@@ -55,16 +55,16 @@
 
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label>First Name</label>
-                                                <input type="text" name="first_name" placeholder="First Name"
+                                                <label>Tên</label>
+                                                <input type="text" name="first_name" placeholder="Tên"
                                                     class="form-control" value="{{ Request::get('first_name') }}">
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input type="text" name="last_name" placeholder="Last Name"
+                                                <label>Họ</label>
+                                                <input type="text" name="last_name" placeholder="Họ"
                                                     class="form-control" value="{{ Request::get('last_name') }}">
                                             </div>
                                         </div>
@@ -82,7 +82,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Quốc gia</label>
-                                                <input type="text" name="country_name" placeholder="Country Name"
+                                                <input type="text" name="country_name" placeholder="Quốc gia"
                                                     class="form-control" value="{{ Request::get('country_name') }}">
                                             </div>
                                         </div>
@@ -91,7 +91,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Khu vực</label>
-                                                <input type="text" name="state" placeholder="state"
+                                                <input type="text" name="state" placeholder="Khu vực"
                                                     class="form-control" value="{{ Request::get('state') }}">
                                             </div>
                                         </div>
@@ -99,7 +99,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Thành phố</label>
-                                                <input type="text" name="city" placeholder="city" class="form-control"
+                                                <input type="text" name="city" placeholder="Thành phố" class="form-control"
                                                     value="{{ Request::get('city') }}">
                                             </div>
                                         </div>
@@ -107,7 +107,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Số điện thoại</label>
-                                                <input type="text" name="phone" placeholder="phone"
+                                                <input type="text" name="phone" placeholder="Số điện thoại"
                                                     class="form-control" value="{{ Request::get('phone') }}">
                                             </div>
                                         </div>
@@ -115,7 +115,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Mã khu vực</label>
-                                                <input type="text" name="postcode" placeholder="postcode"
+                                                <input type="text" name="postcode" placeholder="Mã khu vực"
                                                     class="form-control" value="{{ Request::get('postcode') }}">
                                             </div>
                                         </div>
@@ -124,7 +124,7 @@
                                             <div class="form-group">
                                                 <label>Ngày bắt đầu</label>
                                                 <input type="date" style="padding: 6px;" name="from_date"
-                                                    placeholder="from_date" class="form-control"
+                                                    placeholder="Ngày bắt đầu" class="form-control"
                                                     value="{{ Request::get('from_date') }}">
                                             </div>
                                         </div>
@@ -135,7 +135,7 @@
                                             <div class="form-group">
                                                 <label>Ngày kết thúc</label>
                                                 <input type="date" style="padding: 6px;" name="to_date"
-                                                    placeholder="to_date" class="form-control"
+                                                    placeholder="Ngày kết thúc" class="form-control"
                                                     value="{{ Request::get('to_date') }}">
                                             </div>
                                         </div>
@@ -164,7 +164,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Mã số đơn hàng</th>
+                                            <th>Mã đơn hàng</th>
                                             <th>Họ tên</th>
                                             <th>Tên công ty</th>
                                             <th>Quốc gia</th>
@@ -178,7 +178,7 @@
                                             <th>Số tiền giảm giá</th>
                                             <th>Số tiền vận chuyển</th>
                                             <th>Tổng tiền ($)</th>
-                                            <th>Payment Method</th>
+                                            <th>Phương thức thanh toán</th>
                                             <th>Trạng thái</th>
                                             <th>Ngày bắt đầu</th>
                                             <th>Hành động</th>

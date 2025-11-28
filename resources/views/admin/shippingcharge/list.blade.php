@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Shipping Charge List</h1>
+                        <h1>Danh sách phí vận chuyển</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right";>
                         <a href="{{ url('admin/shipping_charge/add/') }}" class="btn btn-primary"> Thêm phí vận chuyển </a>
@@ -31,7 +31,7 @@
                         @include('admin.layouts._message')
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Shipping Charge List</h3>
+                                <h3 class="card-title">Danh sách phí vận chuyển</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
@@ -39,11 +39,11 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>Price</th>
-                                            <th>Status</th>
+                                            <th>Tên</th>
+                                            <th>Giá</th>
+                                            <th>Trạng thái</th>
                                             <th>Ngày tạo</th>
-                                            <th>Action</th>
+                                            <th>Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,7 +56,7 @@
                                                 <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
                                                 <td>
                                                     <a href="{{ url('admin/shipping_charge/edit/' . $value->id) }}"
-                                                        class="btn btn-primary">Edit</a>
+                                                        class="btn btn-primary">Sửa</a>
                                                     <a href="{{ url('admin/shipping_charge/delete/' . $value->id) }}"
                                                         onclick="return confirm('Xóa phí vận chuyển này?')"
                                                         class="btn btn-danger">Xóa</a>

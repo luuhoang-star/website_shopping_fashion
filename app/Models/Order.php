@@ -16,70 +16,161 @@ class Order extends Model
         return self::find($id);
     }
 
-    static public function getTotalOrder() {
+    // use part
+    //Tổng đơn hàng bên client
+    static public function getTotalOrderUser($user_id)
+    {
+        return self::select('id')
+            ->where('user_id', '=', $user_id)
+            ->where('is_delete', '=', 0)
+            ->where('is_payment', '=', 1)
+            ->count();
+
+    }
+
+    //Tổng đơn hàng hôm nay bên client
+    static public function getTotalTodayOrderUser($user_id)
+    {
+        return self::select('id')
+            ->where('user_id', '=', $user_id)
+            ->where('is_delete', '=', 0)
+            ->where('is_payment', '=', 1)
+            ->whereDate('created_at', '=', date('Y-m-d'))
+            ->count();
+
+    }
+    //Tổng tiền đơn hàng bên client
+
+    static public function getTotalAmountUser($user_id)
+    {
+        return self::select('id')
+            ->where('user_id', '=', $user_id)
+            ->where('is_delete', '=', 0)
+            ->where('is_payment', '=', 1)
+            ->sum('total_amount');
+
+    }
+    //Tổng tiền hôm nay bên client
+    static public function getTotalTodayAmountUser($user_id)
+    {
+        return self::select('id')
+            ->where('user_id', '=', $user_id)
+            ->where('is_delete', '=', 0)
+            ->where('is_payment', '=', 1)
+            ->whereDate('created_at', '=', date('Y-m-d'))
+            ->sum('total_amount');
+
+    }
+
+    static public function getTotalStatusUser($user_id, $status)
+    {
+        return self::select('id')
+            ->where('status', '=', $status)
+            ->where('user_id', '=', $user_id)
+            ->where('is_delete', '=', 0)
+            ->where('is_payment', '=', 1)
+            ->whereDate('created_at', '=', date('Y-m-d'))
+            ->sum('total_amount');
+
+    }
+
+
+    // end use part
+    static public function getTotalOrder()
+    {
         return self::select('id')
             ->where('is_delete', '=', 0)
             ->where('is_payment', '=', 1)
             ->count();
-            
-        }
-    
-      static public function getTotalTodayOrder() {
+
+    }
+
+    static public function getTotalTodayOrder()
+    {
         return self::select('id')
             ->where('is_delete', '=', 0)
             ->where('is_payment', '=', 1)
             ->whereDate('created_at', '=', date('Y-m-d'))
             ->count();
-            
-        }
 
-            static public function getTotalOrderMonth($start_date, $end_date) {
+    }
+
+    static public function getTotalOrderMonth($start_date, $end_date)
+    {
         return self::select('id')
             ->where('is_delete', '=', 0)
             ->where('is_payment', '=', 1)
             ->whereDate('created_at', '>=', $start_date)
             ->whereDate('created_at', '<=', $end_date)
             ->count();
-            
-        }
 
-            static public function getTotalOrderAmountMonth($start_date, $end_date) {
+    }
+
+    static public function getTotalOrderAmountMonth($start_date, $end_date)
+    {
         return self::select('id')
             ->where('is_delete', '=', 0)
             ->where('is_payment', '=', 1)
-             ->whereDate('created_at', '>=', $start_date)
+            ->whereDate('created_at', '>=', $start_date)
             ->whereDate('created_at', '<=', $end_date)
             ->sum('total_amount');
-            
-        }
 
-      static public function getTotalAmount() {
+    }
+
+    static public function getTotalAmount()
+    {
         return self::select('id')
             ->where('is_delete', '=', 0)
             ->where('is_payment', '=', 1)
             ->sum('total_amount');
-            
-        }
 
-      static public function getTotalTodayAmount() {
+    }
+
+    static public function getTotalTodayAmount()
+    {
         return self::select('id')
             ->where('is_delete', '=', 0)
             ->where('is_payment', '=', 1)
             ->whereDate('created_at', '=', date('Y-m-d'))
             ->sum('total_amount');
-            
-        }
 
-        static public function getLatestOrder() {
-            return Order::select('orders.*')
-                ->where('is_payment', '=', 1)
-                ->where('is_delete', '=', 0)
-                ->orderBy('id', 'desc')
-                ->limit(10)
-                ->get();
-        }
+    }
 
-  
+    static public function getRecordUser($user_id)
+    {
+        $return = Order::select('orders.*')
+            ->where('user_id', '=', $user_id)
+            ->where('is_payment', '=', 1)
+            ->where('is_delete', '=', 0)
+            ->orderBy('id', 'desc')
+            ->paginate(30);
+
+        return $return;
+    }
+
+    static public function getSingleUser($user_id, $id)
+    {
+        $return = Order::select('orders.*')
+            ->where('user_id', '=', $user_id)
+            ->where('id', '=', $id)
+            ->where('is_payment', '=', 1)
+            ->where('is_delete', '=', 0)
+            ->first();
+
+        return $return;
+    }
+
+    static public function getLatestOrder()
+    {
+        return Order::select('orders.*')
+            ->where('is_payment', '=', 1)
+            ->where('is_delete', '=', 0)
+            ->orderBy('id', 'desc')
+            ->limit(10)
+            ->get();
+    }
+
+
 
     static public function getRecord()
     {

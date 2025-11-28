@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-12">
-                        <h1>Add New Brand</h1>
+                        <h1>Thêm mới thương hiệu</h1>
                     </div>
 
                 </div>
@@ -28,11 +28,11 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Brand Name
+                                        <label>Tên thương hiệu
                                             <span style="color:red">*</span>
                                         </label>
                                         <input type="text" class="form-control" name="name" required
-                                            value="{{ old('name') }}" placeholder="Brand Name">
+                                            value="{{ old('name') }}" placeholder="Tên thương hiệu">
 
                                     </div>
 
@@ -41,48 +41,48 @@
                                              <span style="color:red">*</span>
                                         </label>
                                         <input type="text" class="form-control" required value="{{ old('slug') }}"
-                                            name="slug" required placeholder="Slug ex . url">
+                                            name="slug" required placeholder="Slug VD: guc-ci">
                                         <div style="color:red">{{  $errors->first('slug') }}</div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>status  <span style="color:red">*</span></label>
+                                        <label>Trạng thái  <span style="color:red">*</span></label>
                                         <select class="form-control" name="status" required>
                                             <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Hoạt động
                                             </option>
-                                            <option value="1" {{ old('status') == 1 ? ' selected' : '' }}>No hoạt
+                                            <option value="1" {{ old('status') == 1 ? ' selected' : '' }}>Không hoạt
                                                 động</option>
                                         </select>
                                     </div>
                                     <hr>
 
                                     <div class="form-group">
-                                        <label>Meta title
+                                        <label>Tiêu đề meta
                                              <span style="color:red">*</span>
                                         </label>
                                         <input type="text" class="form-control" required value="{{ old('meta_title') }}"
-                                            name="meta_title" placeholder="Meta title">
+                                            name="meta_title" placeholder="Tiêu đề meta">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Meta Description
+                                        <label>Mô tả meta
                                              <span style="color:red">*</span>
                                         </label>
-                                       <textarea class="form-control" placeholder="Meta Description" name="meta_description">{{ old('meta_description') }}</textarea>
+                                       <textarea class="form-control" placeholder="Mô tả meta" name="meta_description">{{ old('meta_description') }}</textarea>
 
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Meta Keyword</label>
+                                        <label>Từ khóa meta</label>
                                         <input type="text" class="form-control" required
                                             value="{{ old('meta_keyword') }}" name="meta_keyword"
-                                            placeholder="Meta Keyword">
+                                            placeholder="Từ khóa meta">
                                     </div>
 
 
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Xác nhận</button>
                                 </div>
                             </form>
                         </div>

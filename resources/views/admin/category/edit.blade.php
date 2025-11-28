@@ -32,7 +32,7 @@
                                             <span style="color:red">*</span>
                                         </label>
                                         <input type="text" class="form-control" name="name" required
-                                            value="{{ old('name', $getRecord->name) }}" placeholder="Category Name">
+                                            value="{{ old('name', $getRecord->name) }}" placeholder="Tên danh mục">
 
                                     </div>
 
@@ -42,7 +42,7 @@
                                         </label>
                                         <input type="text" class="form-control" required
                                             value="{{ old('slug', $getRecord->slug) }}" name="slug" required
-                                            placeholder="Slug ex . url">
+                                            placeholder="Slug VD: ao-thun-dep">
                                         <div style="color:red">{{ $errors->first('slug') }}</div>
                                     </div>
 
@@ -65,21 +65,21 @@
                                         </label>
                                         <input type="text" class="form-control" required
                                             value="{{ old('meta_title', $getRecord->meta_title) }}" name="meta_title"
-                                            placeholder="Meta title">
+                                            placeholder="Tiêu đề meta">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Mô tả meta
                                             <span style="color:red">*</span>
                                         </label>
-                                        <textarea class="form-control" placeholder="Meta Description" name="meta_description">{{ old('meta_description', $getRecord->meta_description) }}</textarea>
+                                        <textarea class="form-control" placeholder="Mô tả meta" name="meta_description">{{ old('meta_description', $getRecord->meta_description) }}</textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Từ khóa meta</label>
                                         <input type="text" class="form-control"
                                             value="{{ old('meta_keywords', $getRecord->meta_keyword) }}"
-                                            name="meta_keyword" placeholder="Meta Keyword">
+                                            name="meta_keyword" placeholder="Từ khóa meta">
                                     </div>
 
 

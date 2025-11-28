@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AdminController;
@@ -38,10 +39,25 @@ Route::get('reset/{token}', [AuthController::class, 'reset']);
 Route::post('reset/{token}', [AuthController::class, 'auth_reset']);
 
 
-#Xác thực tài khoản rồi cho đăng nhập
+#Routes xử lý đăng nhập và đăng xuất
 Route::get('admin', [AuthController::class, 'login_admin']);
 Route::post('admin', [AuthController::class, 'auth_login_admin']);
 Route::get('admin/logout', [AuthController::class, 'logout_admin']);
+
+Route::group(['middleware' => 'user'], function () {
+  Route::get('user/dashboard', [UserController::class, 'dashboard']);
+  Route::get('user/orders', [UserController::class, 'orders']);
+    Route::get('user/orders/detail/{id}', [UserController::class, 'orders_detail']);
+  Route::get('user/edit-profile', [UserController::class, 'edit_profile']);
+  Route::post('user/edit-profile', [UserController::class, 'update_profile']);
+  Route::get('user/change-password', [UserController::class, 'change_password']);
+  Route::post('user/change-password', [UserController::class, 'update_password']);
+
+   Route::post('add_to_wishlist', [UserController::class, 'add_to_wishlist']);
+
+  Route::get('my-wishlist', [ProductFront::class, 'my_wishlist']);
+  
+});
 
 #True is:admin ==> load
 Route::group(['middleware' => 'admin'], function () {

@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Product List</h1>
+                        <h1>Danh sách sản phẩm</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right";>
                         <a href="{{ url('admin/product/add/') }}" class="btn btn-primary"> Thêm sản phẩm </a>
@@ -31,7 +31,7 @@
                         @include('admin.layouts._message')
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Product List</h3>
+                                <h3 class="card-title">Danh sách sản phẩm</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">

@@ -12,7 +12,7 @@
                         <ul class="nav nav-pills nav-fill" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link" id="signin-tab-2" data-toggle="tab" href="#signin-2" role="tab"
-                                    aria-controls="signin-2" aria-selected="false">Reset Password</a>
+                                    aria-controls="signin-2" aria-selected="false">Reset mật khẩu</a>
                             </li>
 
                         </ul>
@@ -22,13 +22,13 @@
                                 <form action="" method="post">
                                     {{ csrf_field() }}
                                     <div class="form-group" style="margin-top: 40px;>
-                                        <label for="singin-email-2">New Password *</label>
+                                        <label for="singin-email-2">Mật khẩu mới *</label>
                                         <input type="password" class="form-control" id="singin-email-2" name="password"
                                             required>
                                     </div><!-- End .form-group -->
 
                                     <div class="form-group" style="margin-top: 40px;>
-                                        <label for="singin-email-2">Confirm Password*</label>
+                                        <label for="singin-email-2">Xác nhận mật khẩu</label>
                                         <input type="password" class="form-control" id="singin-email-2" name="confirm_password"
                                             required>
                                     </div>

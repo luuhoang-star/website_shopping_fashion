@@ -60,7 +60,7 @@
                                                     <a href="{{ url('admin/color/edit/' . $value->id) }}"
                                                         class="btn btn-primary">Sửa</a>
                                                     <a href="{{ url('admin/color/delete/' . $value->id) }}"
-                                                        onclick="return confirm('Xóa màu này?')"
+                                                        onclick="return confirm('Xóa màu sắc này?')"
                                                         class="btn btn-danger">Xóa</a>
                                                 </td>
                                             </tr>

@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Discount Code List</h1>
+                        <h1>Danh sách mã giảm giá</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right";>
                         <a href="{{ url('admin/discount_code/add/') }}" class="btn btn-primary"> Thêm mã giảm giá </a>
@@ -31,7 +31,7 @@
                         @include('admin.layouts._message')
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Color List</h3>
+                                <h3 class="card-title">Danh sách mã giảm giá</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
@@ -39,12 +39,12 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>Type</th>
-                                            <th>Percent or Amount</th>
-                                            <th>Status</th>
+                                            <th>Tên</th>
+                                            <th>Loại</th>
+                                            <th>Số tiền giảm giá</th>
+                                            <th>Trạng thái</th>
                                             <th>Ngày tạo</th>
-                                            <th>Action</th>
+                                            <th>Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -59,7 +59,7 @@
                                                 <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
                                                 <td>
                                                     <a href="{{ url('admin/discount_code/edit/' . $value->id) }}"
-                                                        class="btn btn-primary">Edit</a>
+                                                        class="btn btn-primary">Sửa</a>
                                                     <a href="{{ url('admin/discount_code/delete/' . $value->id) }}"
                                                         onclick="return confirm('Xóa màu này?')"
                                                         class="btn btn-danger">Xóa</a>

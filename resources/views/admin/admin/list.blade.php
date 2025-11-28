@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Admin List</h1>
+                        <h1>Danh sách admin</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right;">
                         <a href="{{ url('admin/admin/add/') }}" class="btn btn-primary"> Thêm </a>
@@ -30,7 +30,7 @@
                         @include('admin.layouts._message')
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Admin List</h3>
+                                <h3 class="card-title">Danh sách admin</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
@@ -51,11 +51,11 @@
                                                 <td>{{ $value->id }}</td>
                                                 <td>{{ $value->name }}</td>
                                                 <td>{{ $value->email }}</td>
-                                                <td>{{ $value->status == 0 ? 'Active' : 'Inactive' }}</td>
+                                                <td>{{ $value->status == 0 ? 'Hoạt động' : 'Không hoạt động' }}</td>
                                                 <td>
                                                     <div class="col-sm-6" style="text-align: right;">
                                                         <a href="{{ url('admin/admin/edit/' . $value->id) }}"
-                                                            class="btn btn-primary">Edit</a>
+                                                            class="btn btn-primary">Sửa</a>
                                                         <a href="{{ url('admin/admin/delete/' . $value->id) }}"
                                                             onclick="return confirm('Xóa admin này?')"
                                                             class="btn btn-primary">Xóa</a>

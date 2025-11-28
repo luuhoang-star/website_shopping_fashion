@@ -26,6 +26,12 @@
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     @yield('style')
+    <style type="text/css">
+        .btn-wishlist-add::before {
+            content: '\f233' !important;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -63,11 +69,11 @@
                             <ul class="nav nav-pills nav-fill" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin"
-                                        role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
+                                        role="tab" aria-controls="signin" aria-selected="true">Đăng nhập</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="register-tab" data-toggle="tab" href="#register"
-                                        role="tab" aria-controls="register" aria-selected="false">Register</a>
+                                        role="tab" aria-controls="register" aria-selected="false">Đăng ký</a>
                                 </li>
                             </ul>
                             <div class="tab-content" id="tab-content-5">
@@ -76,32 +82,31 @@
                                     <form action="" id="SubmitFormLogin" method="post">
                                         {{ csrf_field() }}
                                         <div class="form-group">
-                                            <label for="singin-email">Email address *</label>
+                                            <label for="singin-email">Địa chỉ email *</label>
                                             <input type="text" class="form-control" id="singin-email" name="email"
                                                 required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
-                                            <label for="singin-password">Password *</label>
+                                            <label for="singin-password">Mật khẩu *</label>
                                             <input type="password" class="form-control" id="singin-password"
                                                 name="password" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
                                             <button type="submit" class="btn btn-outline-primary-2">
-                                                <span>LOG IN</span>
+                                                <span>Đăng nhập</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
 
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" name="is_remember" class="custom-control-input"
                                                     id="signin-remember">
-                                                <label class="custom-control-label" for="signin-remember">Remember
-                                                    Me</label>
+                                                <label class="custom-control-label" for="signin-remember">Ghi nhớ đăng
+                                                    nhập</label>
                                             </div><!-- End .custom-checkbox -->
-
-                                            <a href="{{ url('forgot-password') }}" class="forgot-link">Forgot Your
-                                                Password?</a>
+                                            <a href="{{ url('forgot-password') }}" class="forgot-link">Quên mật
+                                                khẩu?</a>
                                         </div><!-- End .form-footer -->
                                     </form>
 
@@ -111,35 +116,34 @@
                                     <form action="#" id="SubmitFormRegister" method="post">
                                         {{ csrf_field() }}
                                         <div class="form-group">
-                                            <label for="register-name">Name<span style="color:red">*</span></label>
+                                            <label for="register-name">Tên<span style="color:red">*</span></label>
                                             <input type="text" class="form-control" id="register-name"
                                                 name="name" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
-                                            <label for="register-email">Emaill address<span
-                                                    style="color:red">*</span></label>
+                                            <label for="register-email">Email<span style="color:red">*</span></label>
                                             <input type="email" class="form-control" id="register-email"
                                                 name="email" required>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="register-password">Password *</label>
+                                            <label for="register-password">Mật khẩu *</label>
                                             <input type="password" class="form-control" id="register-password"
                                                 name="password" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
                                             <button type="submit" class="btn btn-outline-primary-2">
-                                                <span>SIGN UP</span>
+                                                <span>Đăng ký</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
 
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input"
                                                     id="register-policy" required>
-                                                <label class="custom-control-label" for="register-policy">I agree to
-                                                    the <a href="#">privacy policy</a> *</label>
+                                                <label class="custom-control-label" for="register-policy">Tôi đồng ý
+                                                    với<a href="#">chính sách bảo mật</a> *</label>
                                             </div><!-- End .custom-checkbox -->
                                         </div><!-- End .form-footer -->
                                     </form>
@@ -239,6 +243,28 @@
                     }
                 },
                 error: function(data) {
+
+                }
+            });
+        });
+
+        $('body').delegate('.add_to_wishlist', 'click', function(e) {
+            var product_id = $(this).attr('id');
+            $.ajax({
+                type: "POST",
+                url: "{{ url('add_to_wishlist') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    product_id: product_id,
+                },
+                dataType: "json",
+                success: function(data) {
+                    if (data.is_wishlist == 0) {
+                        $('.add_to_wishlist' + product_id).removeClass('btn-wishlist-add');
+                    } else {
+                        $('.add_to_wishlist' + product_id).addClass('btn-wishlist-add');
+                    }
+
 
                 }
             });

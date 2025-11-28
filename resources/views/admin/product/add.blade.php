@@ -32,7 +32,7 @@
                                             <span style="color:red">*</span>
                                         </label>
                                         <input type="text" class="form-control" name="title" required
-                                            value="{{ old('title') }}" placeholder="Title">
+                                            value="{{ old('title') }}" placeholder="Tiêu đề">
 
                                     </div>
 
@@ -41,7 +41,7 @@
 
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Xác nhận</button>
                                 </div>
                             </form>
                         </div>

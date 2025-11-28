@@ -33,7 +33,7 @@ class ShippingChargeController extends Controller
         $shippingcharge->save();
 
         // Chuyển hướng sau khi thêm thành công
-        return redirect('admin/shipping_charge/list')->with('success', "shipping Successfully Created");
+        return redirect('admin/shipping_charge/list')->with('success', "Tạo phí vận chuyển thành công!");
     }
     public function edit($id)
     {
@@ -54,7 +54,7 @@ class ShippingChargeController extends Controller
         $shippingcharge->save();
 
         // Chuyển hướng sau khi thêm thành công
-        return redirect('admin/shipping_charge/list')->with('success', "Cập nhật phis van chuyen thành công");
+        return redirect('admin/shipping_charge/list')->with('success', "Cập nhật phí vận chuyển thành công!");
     }
 
     public function delete($id)
@@ -63,6 +63,6 @@ class ShippingChargeController extends Controller
         $shippingcharge->is_delete = 1;
         $shippingcharge->save();
 
-        return redirect()->back()->with('success', "Shipping Successfully deleted");
+        return redirect()->back()->with('success', "Xóa phí vận chuyển thành công!");
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Request;
+use Auth;
 
 class Product extends Model
 {
@@ -18,6 +19,30 @@ class Product extends Model
             ->where('product.is_delete', '=', 0)
             ->orderBy('product.id', 'desc')
             ->paginate(5);
+    }
+
+    static public function getMyWishlist($user_id)
+    {
+        $return = Product::select(
+            'product.*',                            // Lấy tất cả các cột trong bảng product
+            'users.name as created_by_name',        // Lấy tên người tạo sản phẩm từ bảng users
+            'category.name as category_name',       // Lấy tên danh mục chính
+            'sub_category.name as sub_category_name', // Lấy tên danh mục con
+            'category.slug as category_slug',       // Lấy slug của danh mục chính
+            'sub_category.slug as sub_category_slug'  // Lấy slug của danh mục con
+        )
+            ->join('users', 'users.id', '=', 'product.created_by')               // JOIN với bảng users theo người tạo
+            ->join('category', 'category.id', '=', 'product.category_id')        // JOIN với bảng category theo category_id
+            ->join('sub_category', 'sub_category.id', '=', 'product.sub_category_id') // JOIN với bảng sub_category
+            ->join('product_wishlist', 'product_wishlist.product_id', '=', 'product.id')
+            ->where('product_wishlist.user_id','=', $user_id)
+            ->where('product.is_delete', '=', 0)
+            ->where('product.status', '=', 0)
+            ->groupBy('product.id')
+            ->orderBy('product.id', 'desc') // Sắp xếp theo id giảm dần (mới nhất trước)
+            ->paginate(3); // Phân trang
+
+        return $return;
     }
 
     static public function getProduct($category_id = '', $subcategory_id = '')
@@ -84,8 +109,8 @@ class Product extends Model
             $return = $return->where('product.price', '>=', $start_price);
             $return = $return->where('product.price', '<=', $end_price);
         }
-        if(!empty(Request::get('q'))) {
-            $return = $return->where('product.title', 'like', '%'.Request::get('q').'%');
+        if (!empty(Request::get('q'))) {
+            $return = $return->where('product.title', 'like', '%' . Request::get('q') . '%');
         }
 
         // Thêm điều kiện lọc: chỉ lấy sản phẩm chưa bị xóa và đang hoạt động
@@ -139,9 +164,16 @@ class Product extends Model
 
     }
 
+
+
     static public function getSingle($id)
     {
         return self::find($id); // trả về 1 bản ghi trong bảng product
+    }
+
+    static public function checkWishlist($product_id)
+    {
+        return ProductWishlist::checkAlready($product_id, Auth::user()->id);
     }
 
     #kiểm tra có trùng slug không(mục đích 1 cái sản phẩm chỉ 1 slug(đúng logic))

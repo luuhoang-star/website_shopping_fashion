@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Danh sách người dùng (Total: {{ $getRecord->total() }})</h1>
+                        <h1>Danh sách người dùng (Tổng: {{ $getRecord->total() }})</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -45,7 +45,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Tên</label>
-                                                <input type="text" name="name" placeholder="Name" class="form-control"
+                                                <input type="text" name="name" placeholder="Tên" class="form-control"
                                                     value="{{ Request::get('name') }}">
                                             </div>
                                         </div>
@@ -82,7 +82,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <button class="btn btn-primary">Search</button>
+                                            <button class="btn btn-primary">Tìm kiếm</button>
                                             <a href="{{ url('admin/customer/list') }}" class="btn btn-primary">Reset</a>
                                         </div>
                                     </div>
@@ -116,7 +116,7 @@
                                                 <td>{{ $value->id }}</td>
                                                 <td>{{ $value->name }}</td>
                                                 <td>{{ $value->email }}</td>
-                                                <td>{{ $value->status == 0 ? 'Active' : 'Inactive' }}</td>
+                                                <td>{{ $value->status == 0 ? 'Hoạt động' : 'Không hoạt động' }}</td>
                                                 <td>
                                                     {{ date('d-m-Y H:i A', strtotime($value->created_at)) }}
                                                 </td>

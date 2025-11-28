@@ -137,7 +137,7 @@
                         class="nav-link active @if (Request::segment(2) == 'dashboard') active @endif">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Dashboard
+                            Thống kê
                         </p>
                     </a>
                 </li>
@@ -168,7 +168,7 @@
                         class="nav-link @if (Request::segment(2) == 'order') active @endif">
                         <i class="nav-icon fas fa-list-alt"></i>
                         <p>
-                            Orders
+                            Đơn hàng
                         </p>
                     </a>
                 </li>
@@ -233,7 +233,7 @@
 
 
                         <p>
-                            Discount Code
+                            Mã giảm giá
                         </p>
                     </a>
                 </li>
@@ -245,7 +245,7 @@
 
 
                         <p>
-                            Shipping charge
+                            Phí vận chuyển
                         </p>
                     </a>
                 </li>

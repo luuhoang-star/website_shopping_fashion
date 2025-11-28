@@ -17,7 +17,7 @@
                 @elseif(!empty($getCategory))
                     <h1 class="page-title">{{ $getCategory->name }}</h1>
                 @else
-                    <h1 class="page-title">Search for {{ Request::get('q') }}</h1>
+                    <h1 class="page-title">Tìm kiếm {{ Request::get('q') }}</h1>
                 @endif
             </div><!-- End .container -->
         </div><!-- End .page-header -->
@@ -25,10 +25,10 @@
             <div class="container">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{ url('') }}">Home</a>
+                        <a href="{{ url('') }}">Trang chủ</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="javascript:void(0)">Shop</a>
+                        <a href="javascript:void(0)">Cửa hàng</a>
                     </li>
 
                     @if (!empty($getSubCategory))
@@ -66,12 +66,12 @@
 
                             <div class="toolbox-right">
                                 <div class="toolbox-sort">
-                                    <label for="sortby">Sort by:</label>
+                                    <label for="sortby">Sắp xếp theo:</label>
                                     <div class="select-custom">
                                         <select name="sortby" id="sortby" class="form-control ChangeSortBy">
-                                            <option value="popularity" selected="selected">Most Popular</option>
-                                            <option value="rating">Most Rated</option>
-                                            <option value="date">Date</option>
+                                            <option value="popularity" selected="selected">Phổ biến nhất</option>
+                                            <option value="rating">Đánh giá cao nhất</option>
+                                            <option value="date">Ngày tạo</option>
                                         </select>
                                     </div>
                                 </div><!-- End .toolbox-sort -->
@@ -108,8 +108,8 @@
 
                         <div class="sidebar sidebar-shop">
                             <div class="widget widget-clean">
-                                <label>Filters:</label>
-                                <a href="#" class="sidebar-filter-clear">Clean All</a>
+                                <label>Tìm kiếm:</label>
+                                <a href="#" class="sidebar-filter-clear">Xóa tất cả</a>
                             </div><!-- End .widget widget-clean -->
 
                             @if (!empty($getSubCategoryFilter))
@@ -117,7 +117,7 @@
                                     <h3 class="widget-title">
                                         <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true"
                                             aria-controls="widget-1">
-                                            Category
+                                            Danh mục
                                         </a>
                                     </h3><!-- End .widget-title -->
 
@@ -154,7 +154,7 @@
                                 <h3 class="widget-title">
                                     <a data-toggle="collapse" href="#widget-2" role="button" aria-expanded="true"
                                         aria-controls="widget-2">
-                                        Size
+                                        Kích cỡ(chưa làm)
                                     </a>
                                 </h3><!-- End .widget-title -->
 
@@ -213,7 +213,7 @@
                                 <h3 class="widget-title">
                                     <a data-toggle="collapse" href="#widget-3" role="button" aria-expanded="true"
                                         aria-controls="widget-3">
-                                        Colour
+                                        Màu sắc
                                     </a>
                                 </h3><!-- End .widget-title -->
 
@@ -238,7 +238,7 @@
                                 <h3 class="widget-title">
                                     <a data-toggle="collapse" href="#widget-4" role="button" aria-expanded="true"
                                         aria-controls="widget-4">
-                                        Brand
+                                        Nhãn hiệu
                                     </a>
                                 </h3><!-- End .widget-title -->
 
@@ -268,7 +268,7 @@
                                 <h3 class="widget-title">
                                     <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true"
                                         aria-controls="widget-5">
-                                        Price
+                                        Price(chưa làm)
                                     </a>
                                 </h3><!-- End .widget-title -->
 
@@ -287,6 +287,7 @@
                             </div><!-- End .widget -->
                         </div><!-- End .sidebar sidebar-shop -->
                     </aside><!-- End .col-lg-3 -->
+                    
                 </div><!-- End .row -->
             </div><!-- End .container -->
         </div><!-- End .page-content -->
@@ -358,7 +359,7 @@
 
         var xhr;
 
-        function FilterForm() {
+        function FilterForm(page = 1) {
             if (xhr && xhr.readyState != 4) {
                 xhr.abort();
             }

@@ -29,7 +29,7 @@
                                     <div class="form-group">
                                         <label for="name">Tên admin</label>
                                         <input type="text" class="form-control" name="name"
-                                            value="{{ old('name', $getRecord->name) }}" required placeholder="Enter Name">
+                                            value="{{ old('name', $getRecord->name) }}" required placeholder="Tên admin">
                                         <!--hiển thị dữ liệu cũ khi đã submit nhằm đỡ gõ lại ,hoặc hiện thị dữ liệu có sẵn khi chưa submit để sửa cái khác(tăng tính trải nghiệm)-->
                                     </div>
 
@@ -37,7 +37,7 @@
                                         <label for="email">Email</label>
                                         <input type="email" class="form-control" name="email"
                                             value="{{ old('email', $getRecord->email) }}" required
-                                            placeholder="Enter Email">
+                                            placeholder="Email">
                                         <div style="color:red">{{ $errors->first('email') }}</div>
 
 
@@ -45,16 +45,16 @@
 
                                     <div class="form-group">
                                         <label for="password">Mật khẩu</label>
-                                        <input type="text" class="form-control" name="password" placeholder="Password">
+                                        <input type="text" class="form-control" name="password" placeholder="Mật khẩu">
                                         <p>Nếu bạn muốn đổi mật khẩu thì hãy nhập vào</p>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Trạng thái</label>
                                         <select class="form-control" name="status" required>
-                                            <option {{ $getRecord->status == 0 ? 'selected' : '' }} value="0">Active
+                                            <option {{ $getRecord->status == 0 ? 'selected' : '' }} value="0">Hoạt động
                                             </option>
-                                            <option {{ $getRecord->status == 1 ? 'selected' : '' }} value="1">Inactive
+                                            <option {{ $getRecord->status == 1 ? 'selected' : '' }} value="1">Không hoạt động
                                             </option>
                                         </select>
                                     </div>

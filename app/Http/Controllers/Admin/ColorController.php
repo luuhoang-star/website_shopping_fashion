@@ -34,7 +34,7 @@ class ColorController extends Controller
         $color->save();
 
         // Chuyển hướng sau khi thêm thành công
-        return redirect('admin/color/list')->with('success', "Color Successfully Created");
+        return redirect('admin/color/list')->with('success', "Thêm màu sắc mới thành công!");
     }
     public function edit($id)
     {
@@ -55,7 +55,7 @@ class ColorController extends Controller
         $color->save();
 
         // Chuyển hướng sau khi thêm thành công
-        return redirect('admin/color/list')->with('success', "Cập nhật màu sắc thành công");
+        return redirect('admin/color/list')->with('success', "Cập nhật màu sắc thành công!");
     }
 
     public function delete($id) {
@@ -63,6 +63,6 @@ class ColorController extends Controller
         $color->is_delete = 1;
         $color->save();
 
-        return redirect()->back()->with('success', "Color Successfully deleted");
+        return redirect()->back()->with('success', "Màu sắc đã xóa thành công!");
     }
 }

@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-12">
-                        <h1>Add New Shipping Charge</h1>
+                        <h1>Thêm mới phí vận chuyển</h1>
                     </div>
 
                 </div>
@@ -28,22 +28,22 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Shipping Charge Name
+                                        <label>Tên phí vận chuyển
                                             <span style="color:red">*</span>
                                         </label>
                                         <input type="text" class="form-control" name="name" required
-                                            value="{{ old('name') }}" placeholder="Shipping Charge Name">
+                                            value="{{ old('name') }}" placeholder="Tên phí vận chuyển">
 
                                     </div>
 
                                     
 
                                     <div class="form-group">
-                                        <label>Price
+                                        <label>Giá
                                             <span style="color:red">*</span>
                                         </label>
                                         <input type="text" class="form-control" name="price" required
-                                            value="{{ old('price') }}" placeholder="Price">
+                                            value="{{ old('price') }}" placeholder="Giá">
 
                                     </div>
 

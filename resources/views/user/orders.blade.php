@@ -27,7 +27,7 @@
                                         <tr>
                                             <th>Mã số đơn hàng</th>
                                             <th>Tổng tiền ($)</th>
-                                            <th>Payment Method</th>
+                                            <th>Hình thức thanh toán</th>
                                             <th>Trạng thái</th>
                                             <th>Ngày bắt đầu</th>
                                             <th>Hành động</th>
@@ -48,9 +48,9 @@
                                                         Đang xử lý
                                                     @elseif($value->status == 2)
                                                         Đã giao hàng
-                                                    @elseif($value->status == 1)
+                                                    @elseif($value->status == 3)
                                                         Đã hoàn thành
-                                                    @elseif($value->status == 1)
+                                                    @elseif($value->status == 4)
                                                         Đã hủy
                                                     @endif
                                                 </td>

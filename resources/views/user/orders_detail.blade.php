@@ -25,8 +25,9 @@
 
                         <div class="col-md-8 col-lg-9">
                             <div class="tab-content">
+                                @include('layouts._message')
                                 <div class="">
-                                    
+
                                     <div class="form-group">
                                         <label>ID : <span style="font-weight: normal;">
                                                 {{ $getRecord->order_number }}</span>
@@ -161,7 +162,7 @@
                                                     <th>Tên sản phẩm</th>
                                                     <th>Số lượng</th>
                                                     <th>Giá</th>
-                                                   
+
                                                     <th>Tiền kích cỡ($)</th>
                                                     <th>Tổng tiền ($)</th>
 
@@ -181,19 +182,35 @@
                                                             <img style="width: 100px; height: 100px;"
                                                                 src="{{ $getProductImage->getLogo() }}">
                                                         </td>
-                                                        <td>
+                                                        <td style="max-width: 300px;">
                                                             <a target="_blank" href="{{ url($item->getProduct->slug) }}">
                                                                 {{ $item->getProduct->title }}
                                                             </a>
-                                                            <br >
-                                                            Tên màu sắc: {{ $item->color_name }} <br />
-                                                            Tên kích cỡ: {{ $item->size_name }} <br />
                                                             <br>
-                                                            @if($getRecord->status == 3)
-                                                                <button class="btn btn-primary MakeReview" id="{{ $item->getProduct->id }}" data-order="{{ $getRecord->id }}">
-                                                                    Đánh giá sản phẩm
-                                                                </button>
+                                                            @if (!empty($item->color_name))
+                                                                <b>Tên màu sắc:</b> {{ $item->color_name }} <br />
                                                             @endif
+                                                            @if (!empty($item->size_name))
+                                                                <b>Tên kích cỡ:</b> {{ $item->size_name }} <br />
+                                                            @endif
+                                                            @if ($getRecord->status == 3)
+                                                                @php
+                                                                    $getReview = $item->getReview(
+                                                                        $item->getProduct->id,
+                                                                        $getRecord->id,
+                                                                    );
+                                                                @endphp
+                                                                @if (!empty($getReview))
+                                                                    Sao : {{ $getReview->rating }} <br>
+                                                                    Đánh giá : {{ $getReview->review }} <br>
+                                                                @else
+                                                                    <button class="btn btn-primary MakeReview"
+                                                                        id="{{ $item->getProduct->id }}"
+                                                                        data-order="{{ $getRecord->id }}">
+                                                                        Đánh giá sản phẩm
+                                                                    </button>
+                                                                @endif
+                                                                @endif
                                                         </td>
                                                         <td>{{ $item->quantity }}</td>
                                                         <td>{{ $item->price }}</td>
@@ -220,51 +237,57 @@
     </main>
 
 
-<div class="modal fade" id="MakeReviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-            <div class="form-group">
-                <label>Bạn muốn đánh giá bao nhiêu sao?</label>
-                <select class="form-control">
-                    <option value="">Chọn</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-            </div>
+    <div class="modal fade" id="MakeReviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Đánh giá sản phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-            <div class="form-group">
-                <label>Đánh giá</label>
-                <textarea class="form-control"></textarea>
-            </div>
+                <form action="{{ url('user/make-review') }}" method="post">
+                    {{ csrf_field() }}
+                    <input type="hidden" required id="getProductId" name="product_id">
+                    <input type="hidden" required id="getOrderId" name="order_id">
+                    <div class="modal-body" style="padding: 20px;">
+                        <div class="form-group">
+                            <label>Bạn muốn đánh giá bao nhiêu sao?</label>
+                            <select class="form-control" required name="rating">
+                                <option value="">Chọn</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+                        <div class="form-group">
+                            <label>Đánh giá</label>
+                            <textarea class="form-control" required name="review"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-
 @endsection
 @section('script')
     <script type="text/javascript">
-    $('body').delegate('.MakeReview', 'click', function() {
-        var product_id = $(this).attr('id');
-        var order_id = $(this).attr('data-order');
-
-        $('#MakeReviewModal').modal('show')
-    })
+        $('body').delegate('.MakeReview', 'click', function() {
+            var product_id = $(this).attr('id');
+            var order_id = $(this).attr('data-order');
+            $('#getProductId').val(product_id)
+            $('#getOrderId').val(order_id)
+            $('#MakeReviewModal').modal('show');
+        })
     </script>
-</script>
 @endsection

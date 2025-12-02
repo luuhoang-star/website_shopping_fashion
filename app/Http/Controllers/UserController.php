@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\ProductWishlist;
+use App\Models\ProductReview;
 use Auth;
 use Hash;
 
@@ -76,7 +77,7 @@ class UserController extends Controller
         $user->postcode = trim($request->postcode);
         $user->phone = trim($request->phone);
         $user->save();
-        
+
         return redirect()->back()->with('success', 'Thông tin cá nhân cập nhật thành công');
 
     }
@@ -91,34 +92,47 @@ class UserController extends Controller
 
     public function update_password(Request $request)
     {
-      $user = User::getSingle(Auth::user()->id);
-      if(Hash::check($request->old_password, $user->password)) {
-        if($request->password == $request->confirm_password) {
-            $user->password = Hash::make($request->password);
-            $user->save();
-            return redirect()->back()->with('success', "Mật khẩu cập nhật thành công");
+        $user = User::getSingle(Auth::user()->id);
+        if (Hash::check($request->old_password, $user->password)) {
+            if ($request->password == $request->confirm_password) {
+                $user->password = Hash::make($request->password);
+                $user->save();
+                return redirect()->back()->with('success', "Mật khẩu cập nhật thành công");
+            } else {
+                return redirect()->back()->with('error', "Mật khẩu mới và mật khẩu xác nhận không khớp nhau");
+            }
         } else {
-            return redirect()->back()->with('error', "Mật khẩu mới và mật khẩu xác nhận không khớp nhau");
+            return redirect()->back()->with('error', "Mật khẩu cũ chưa đúng");
         }
-      } else {
-        return redirect()->back()->with('error', "Mật khẩu cũ chưa đúng");
-      }
     }
 
-    public function add_to_wishlist(Request $request) {
+    public function add_to_wishlist(Request $request)
+    {
         $check = ProductWishlist::checkAlready($request->product_id, Auth::user()->id);
-        if(empty($check)) {
-        $save = new ProductWishlist;
-        $save->product_id = $request->product_id;
-        $save->user_id = Auth::user()->id;
+        if (empty($check)) {
+            $save = new ProductWishlist;
+            $save->product_id = $request->product_id;
+            $save->user_id = Auth::user()->id;
             $save->save();
-        $json['is_wishlist'] = 1;
+            $json['is_wishlist'] = 1;
         } else {
             ProductWishlist::DeleteRecord($request->product_id, Auth::user()->id);
             $json['is_wishlist'] = 0;
-    }
-    $json['status'] = true;
-    echo json_encode($json);
+        }
+        $json['status'] = true;
+        echo json_encode($json);
 
-}
+    }
+
+    public function submit_review(Request $request) {
+        $save = new ProductReview;
+        $save->product_id = trim($request->product_id);
+        $save->order_id = trim($request->order_id);
+        $save->user_id = Auth::user()->id;
+        $save->rating = trim($request->rating);
+        $save->review = trim($request->review);
+        $save->save();
+
+        return redirect()->back()->with('success', "Cảm ơn đánh giá của bạn !");
+    }
 }

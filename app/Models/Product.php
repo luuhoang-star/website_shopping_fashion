@@ -199,12 +199,43 @@ class Product extends Model
 
     public function getCategory()
     {
-        return $this->belongsTo(Category::class, 'category_id'); // mqh 1:1.1 sp thuộc nhiều danh mục
+        return $this->belongsTo(Category::class, 'category_id'); // mqh 1:1.1 sp thuộc 1 danh mục
     }
 
     public function getSubCategory()
     {
         return $this->belongsTo(SubCategory::class, 'sub_category_id');
     }
+
+    public function getTotalReview() {
+        return $this->hasMany(ProductReview::class, 'product_id')
+            ->join('users', 'users.id', '=', 'product_review.user_id')
+            ->count();
+    }
+
+    public function getReviewRating($product_id)
+    {
+        $avg = ProductReview::getRatingAVG($product_id);
+        if($avg >= 1 && $avg <= 1) {
+            return 20;
+        }
+        else if($avg >= 1 && $avg <= 2) {
+            return 40;
+        }
+        if($avg >= 1 && $avg <= 3) {
+            return 60;
+        }
+        if($avg >= 1 && $avg <= 4) {
+            return 80;
+        }
+        if($avg >= 1 && $avg <= 5) {
+            return 100;
+        }
+        else {
+            return 0;
+        }
+    }
+
+
 
 }

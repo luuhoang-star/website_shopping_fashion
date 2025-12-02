@@ -49,9 +49,11 @@
 
                          <div class="ratings-container">
                              <div class="ratings">
-                                 <div class="ratings-val" style="width: 20%;"></div>
+                                 <div class="ratings-val" style="width: {{ $value->getReviewRating($value->id) }}%;">
+                                 </div>
                              </div>
-                             <span class="ratings-text">( 2 Reviews )</span>
+
+                             <span class="ratings-text">{{ $value->getTotalReview() }} đánh giá</span>
                          </div>
                      </div>
                  </div>

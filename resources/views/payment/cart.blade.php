@@ -32,10 +32,10 @@
                                     <table class="table table-cart table-mobile">
                                         <thead>
                                             <tr>
-                                                <th>Product</th>
-                                                <th>Price</th>
-                                                <th>Quantity</th>
-                                                <th>Total</th>
+                                                <th>Sản phẩm</th>
+                                                <th>Giá</th>
+                                                <th>Số lượng</th>
+                                                <th>Tổng tiền</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -98,19 +98,19 @@
                                     <div class="cart-bottom">
                                        
 
-                                        <button type="submit" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i
+                                        <button type="submit" class="btn btn-outline-dark-2"><span>Cập nhật giỏ hàng</span><i
                                                 class="icon-refresh"></i></button>
                                     </div><!-- End .cart-bottom -->
                                 </form>
                             </div><!-- End .col-lg-9 -->
                             <aside class="col-lg-3">
                                 <div class="summary summary-cart">
-                                    <h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
+                                    <h3 class="summary-title">Tổng tiền giỏ hàng</h3><!-- End .summary-title -->
 
                                     <table class="table table-summary">
                                         <tbody>
                                             <tr class="summary-subtotal">
-                                                <td>Subtotal:</td>
+                                                <td>Tổng tiền:</td>
                                                 <td>${{ number_format(Cart::getSubTotal(), 2) }}</td>
                                             </tr><!-- End .summary-subtotal -->
                                             
@@ -120,18 +120,18 @@
 
 
                                             <tr class="summary-total">
-                                                <td>Total:</td>
-                                                <td>$160.00</td>
+                                                <td></td>
+                                                <td></td></td>
                                             </tr><!-- End .summary-total -->
                                         </tbody>
                                     </table><!-- End .table table-summary -->
 
-                                    <a href="{{ url('checkout') }}" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO
-                                        CHECKOUT</a>
+                                    <a href="{{ url('checkout') }}" class="btn btn-outline-primary-2 btn-order btn-block">Tiến hành thanh toán
+                                        </a>
                                 </div><!-- End .summary -->
 
-                                <a href="{{ url('') }}" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE
-                                        SHOPPING</span><i class="icon-refresh"></i></a>
+                                <a href="{{ url('') }}" class="btn btn-outline-dark-2 btn-block mb-3"><span>Về trang chủ
+                                        </span><i class="icon-refresh"></i></a>
                             </aside><!-- End .col-lg-3 -->
                         </div><!-- End .row -->
                     @else

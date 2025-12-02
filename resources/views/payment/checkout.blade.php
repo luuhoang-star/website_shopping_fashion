@@ -120,7 +120,7 @@
                                                 </tr>
                                             @endforeach
                                             <tr class="summary-subtotal">
-                                                <td>Tiền phụ:</td>
+                                                <td>Tổng tiền:</td>
                                                 <td>${{ number_format(Cart::getSubTotal(), 2) }}</td>
                                             </tr><!-- End .summary-subtotal -->
                                             <tr>

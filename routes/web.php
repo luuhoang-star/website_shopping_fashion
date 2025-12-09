@@ -16,6 +16,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController as ProductFront;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\PageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,17 +48,17 @@ Route::get('admin/logout', [AuthController::class, 'logout_admin']);
 Route::group(['middleware' => 'user'], function () {
   Route::get('user/dashboard', [UserController::class, 'dashboard']);
   Route::get('user/orders', [UserController::class, 'orders']);
-    Route::get('user/orders/detail/{id}', [UserController::class, 'orders_detail']);
+  Route::get('user/orders/detail/{id}', [UserController::class, 'orders_detail']);
   Route::get('user/edit-profile', [UserController::class, 'edit_profile']);
   Route::post('user/edit-profile', [UserController::class, 'update_profile']);
   Route::get('user/change-password', [UserController::class, 'change_password']);
   Route::post('user/change-password', [UserController::class, 'update_password']);
 
-   Route::post('add_to_wishlist', [UserController::class, 'add_to_wishlist']);
-   Route::post('user/make-review', [UserController::class, 'submit_review']);
+  Route::post('add_to_wishlist', [UserController::class, 'add_to_wishlist']);
+  Route::post('user/make-review', [UserController::class, 'submit_review']);
 
   Route::get('my-wishlist', [ProductFront::class, 'my_wishlist']);
-  
+
 });
 
 #True is:admin ==> load
@@ -131,6 +132,19 @@ Route::group(['middleware' => 'admin'], function () {
   Route::post('admin/discount_code/update/{id}', [DiscountCodeController::class, 'update']);
   Route::get('admin/discount_code/delete/{id}', [DiscountCodeController::class, 'delete']);
 
+  #Page
+  Route::get('admin/page/list', [PageController::class, 'list']);
+  Route::get('admin/page/edit/{id}', [PageController::class, 'edit']);
+  Route::post('admin/page/update/{id}', [PageController::class, 'update']);
+ 
+  Route::get('admin/setting/system-setting', [PageController::class, 'system_setting']);
+  Route::post('admin/setting/system-setting', [PageController::class, 'update_system_setting']);
+
+  #Contact Us
+  Route::get('admin/contactus/list', [PageController::class, 'contactus']);
+  Route::get('admin/contactus/delete/{id}', [PageController::class, 'contactus_delete']);
+
+ 
 
   #Shipping_charge
   Route::get('admin/shipping_charge/list', [ShippingChargeController::class, 'list']);
@@ -144,6 +158,18 @@ Route::group(['middleware' => 'admin'], function () {
 });
 #Client
 Route::get('/', [HomeController::class, 'home']);
+Route::get('contact', [HomeController::class, 'contact']);
+Route::post('contact', [HomeController::class, 'submit_contact']);
+Route::get('about', [HomeController::class, 'about']);
+Route::get('faq', [HomeController::class, 'faq']);
+Route::get('payment-method', [HomeController::class, 'payment_method']);
+Route::get('money-back-guarantee', [HomeController::class, 'money_back_guarantee']);
+Route::get('return', [HomeController::class, 'return']);
+Route::get('shipping', [HomeController::class, 'shipping']);
+Route::get('terms-condition', [HomeController::class, 'terms_condition']);
+Route::get('privacy-policy', [HomeController::class, 'privacy_policy']);
+
+
 Route::get('cart', [PaymentController::class, 'cart']);
 Route::post('update_cart', [PaymentController::class, 'update_cart']);
 Route::get('cart/delete/{id}', [PaymentController::class, 'cart_delete']);

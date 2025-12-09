@@ -250,6 +250,42 @@
                     </a>
                 </li>
 
+                 <li class="nav-item">
+                    <a href="{{ url('admin/contactus/list') }}"
+                        class="nav-link @if (Request::segment(2) == 'contactus') active @endif">
+                        <i class="nav-icon fab fa-product-hunt"></i>
+
+
+                        <p>
+                            Liên hệ chúng tôi
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('admin/page/list') }}"
+                        class="nav-link @if (Request::segment(2) == 'page') active @endif">
+                        <i class="nav-icon fab fa-product-hunt"></i>
+
+
+                        <p>
+                            Trang
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('admin/setting/system-setting') }}"
+                        class="nav-link @if (Request::segment(2) == 'setting') active @endif">
+                        <i class="nav-icon fab fa-product-hunt"></i>
+
+
+                        <p>
+                            Cài đặt hệ thống
+                        </p>
+                    </a>
+                </li>
+
 
 
 

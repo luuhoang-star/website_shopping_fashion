@@ -16,8 +16,12 @@
     @if (!empty($meta_keyword))
         <meta name="keyword" content="{{ $meta_keyword }}">
     @endif
+
+    @php
+        $getSystemSettingApp = App\Models\SystemSetting::getSingle();
+    @endphp
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/icons/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ $getSystemSettingApp->getFevicon() }}">
 
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">

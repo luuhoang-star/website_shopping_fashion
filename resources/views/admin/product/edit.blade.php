@@ -1,7 +1,6 @@
 @extends('admin.layouts.app')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
 @endsection
 
 @section('content')
@@ -289,7 +288,7 @@
     </div>
 @endsection
 @section('script')
-    <script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
+   
     <script src="{{ asset('sortable/jquery-ui.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -319,15 +318,6 @@
                 }
             });
         });
-
-        $('.editor') // Chọn tất cả phần tử có class "editor" (ví dụ: <textarea class="editor">)
-            .summernote({ // Khởi tạo plugin Summernote trên những phần tử đã chọn
-                height: 180 // Cấu hình: đặt chiều cao của khung soạn thảo là 180 pixel
-            });
-
-
-
-
 
         var i = 1; // Khởi tạo biến đếm để tạo ID riêng cho mỗi dòng mới
 

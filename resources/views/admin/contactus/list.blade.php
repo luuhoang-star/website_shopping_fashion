@@ -9,10 +9,9 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Danh sách mã giảm giá</h1>
+                        <h1>Danh sách liên hệ</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right";>
-                        <a href="{{ url('admin/discount_code/add/') }}" class="btn btn-primary"> Thêm mã giảm giá </a>
                     </div>
 
                 </div>
@@ -31,7 +30,7 @@
                         @include('admin.layouts._message')
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Danh sách mã giảm giá</h3>
+                                <h3 class="card-title">Danh sách liên hệ</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
@@ -39,12 +38,13 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>Tên đăng nhập</th>
                                             <th>Tên</th>
-                                            <th>Loại</th>
-                                            <th>Số tiền giảm giá</th>
-                                            <th>Trạng thái</th>
+                                            <th>Email</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Chủ đề</th>
+                                            <th>Nội dung tin nhắn</th>
                                             <th>Ngày tạo</th>
-                                            <th>Ngày hết hạn </th>
                                             <th>Hành động</th>
                                         </tr>
                                     </thead>
@@ -52,28 +52,31 @@
                                         @foreach ($getRecord as $value)
                                             <tr>
                                                 <td>{{ $value->id }}</td>
+                                                <td>{{ !empty($value->getUser) ? $value->getUser->name : '' }}</td>
                                                 <td>{{ $value->name }}</td>
-                                                <td>{{ $value->type }}</td>
-                                                <td>{{ $value->percent_amount }}</td>
-                                                <td>{{ $value->status == 0 ? 'Hoạt động' : 'Không hoạt động' }}</td>
-                                                <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
-                                                <td>{{ date('d-m-Y', strtotime($value->expire_date)) }}</td>
+                                                <td>{{ $value->email }}</td>
+                                                <td>{{ $value->phone }}</td>
+                                                <td>{{ $value->subject }}</td>
+                                                <td>{{ $value->message }}</td>
+                                                <td>{{ $value->created_at }}</td>
                                                 <td>
-                                                    <a href="{{ url('admin/discount_code/edit/' . $value->id) }}"
-                                                        class="btn btn-primary">Sửa</a>
-                                                    <a href="{{ url('admin/discount_code/delete/' . $value->id) }}"
-                                                        onclick="return confirm('Xóa màu này?')"
-                                                        class="btn btn-danger">Xóa</a>
+                                                    <a href="{{ url('admin/contactus/delete/' . $value->id) }}"
+                                                        class="btn btn-primary">Xóa</a>
+                                                  
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div class="card-footer clearfix">
+
+                                <div class="d-flex justify-content-center mt-3">
+                                    {{ $getRecord->links('pagination::bootstrap-4') }}
+                                </div>
+                                {{-- <div class="card-footer clearfix">
                                     <div class="float-right">
                                         {{ $getRecord->links() }}
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <!-- /.card-body -->
                         </div>

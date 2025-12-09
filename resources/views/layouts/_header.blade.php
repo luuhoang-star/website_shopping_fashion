@@ -2,14 +2,7 @@
      <div class="header-top">
          <div class="container">
              <div class="header-left">
-                 <div class="header-dropdown">
-                     <a href="#">Usd</a>
-                     <div class="header-menu">
-                         <ul>
-                             <li><a href="#">Usd</a></li>
-                         </ul>
-                     </div>
-                 </div>
+               
 
                  <div class="header-dropdown">
                      <a href="#">Eng</a>
@@ -27,7 +20,7 @@
                      <li>
                          <a href="#">Links</a>
                          <ul>
-                             <li><a href="tel:#"><i class="icon-phone"></i>Gọi: 0973.797.151</a></li>
+                             <li><a href="tel:{{ $getSystemSettingApp->phone }}"><i class="icon-phone"></i>Gọi: {{ $getSystemSettingApp->phone }}</a></li>
                              @if(!empty(Auth::check()))
                              <li><a href="{{ url('my-wishlist')}}"><i class="icon-heart-o"></i>Danh sách yêu thích</a>
                              </li>
@@ -58,7 +51,7 @@
                  </button>
 
                  <a href="index.html" class="logo">
-                     <img src="{{ asset('assets/images/logo.png') }}" alt="Molla Logo" width="105" height="25">
+                     <img src="{{ $getSystemSettingApp->getLogo() }}" alt="Molla Logo" width="105" height="25">
 
                  </a>
 
